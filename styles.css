@@ -1,9 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap");
 /* General Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Winky Rough", sans-serif;
 }
 
 :root {
@@ -242,7 +243,13 @@ html {
     display: flex;
   }
   .hero-section {
-    height: calc(100vh + 15rem);
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    overflow-y: visible;
+  }
+  .tape {
+    transform: translateY(-1rem);
   }
   .navbar {
     padding: 1rem 2rem;
@@ -264,6 +271,7 @@ html {
   width: 100%;
   height: 2rem;
   z-index: 10;
+  margin-top: 1rem;
 }
 
 /* Modal Styles */
@@ -355,8 +363,8 @@ html {
 
 .about-badge {
   position: absolute;
-  top: 10%;
-  left: 10%;
+  top: 0%;
+  left: 0%;
   background: #373643bb;
   padding: 17px 20px;
   border-radius: 10px;
@@ -401,13 +409,18 @@ html {
 @media (max-width: 768px) {
   .about {
     flex-direction: column;
-    padding: 1em 2em;
+    padding: 1em;
     margin-top: 4rem;
     gap: 4rem;
   }
 
   .about-image-container {
     max-width: 100%;
+  }
+
+  .about-image {
+    width: 115%;
+    height: 130%;
   }
 
   .about-content {
