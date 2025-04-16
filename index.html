@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitrade - Invest Your Money</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- HTML (hero-section.html) -->
+    <section class="hero-section">
+      <!-- Animated Background -->
+      <div class="hero-bg"></div>
+
+      <!-- Overlay -->
+      <div class="overlay"></div>
+
+      <!-- Navigation Bar -->
+      <nav class="navbar">
+        <div class="logo">
+          <img src="assets/logo-white.png" alt="" />
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Tokens</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="join-btn">Join Now</button>
+        <div class="menu-toggle" id="menu-toggle">
+          <span class="material-icons" id="menu-icon">menu</span>
+        </div>
+      </nav>
+
+      <!-- Hero Content -->
+      <div class="hero-content fade-in">
+        <div class="text-content">
+          <h1>
+            Invest Your Money<br />
+            With <span class="highlight">Higher Return</span>
+          </h1>
+          <p>
+            Anyone can invest money into different currencies to increase their
+            earnings through online trading.
+          </p>
+          <div class="hero-buttons">
+            <button class="get-started btn-primary">Get Started</button>
+            <button class="watch-video btn-secondary" id="watch-video-btn">
+              <span class="material-icons">play_circle_filled</span>
+              Watch Video
+            </button>
+          </div>
+
+          <!-- Video Modal -->
+          <div id="video-modal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <iframe
+                id="youtube-video"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/F3QpgXBtDeo?autoplay=1"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+            </div>
+          </div>
+        </div>
+        <div class="image-content">
+          <img src="./assets/arrow.png" alt="Graph with coins" />
+        </div>
+      </div>
+    </section>
+
+    <div class="tape">
+      <!-- TradingView Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <div class="tradingview-widget-copyright">
+          <a
+            href="https://www.tradingview.com/"
+            rel="noopener nofollow"
+            target="_blank"
+            ><span class="blue-text">Track all markets on TradingView</span></a
+          >
+        </div>
+        <script
+          type="text/javascript"
+          src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+          async
+        >
+            {
+            "symbols": [
+              {
+                "proName": "FOREXCOM:SPXUSD",
+                "title": "S&P 500 Index"
+              },
+              {
+                "proName": "FOREXCOM:NSXUSD",
+                "title": "US 100 Cash CFD"
+              },
+              {
+                "proName": "FX_IDC:EURUSD",
+                "title": "EUR to USD"
+              },
+              {
+                "proName": "BITSTAMP:BTCUSD",
+                "title": "Bitcoin"
+              },
+              {
+                "proName": "BITSTAMP:ETHUSD",
+                "title": "Ethereum"
+              }
+            ],
+            "showSymbolLogo": true,
+            "isTransparent": false,
+            "displayMode": "regular",
+            "colorTheme": "dark",
+            "locale": "en"
+          }
+        </script>
+      </div>
+      <!-- TradingView Widget END -->
+    </div>
+
+    <!-- About Us Section -->
+    <section class="about">
+      <div class="about-image-container">
+        <img src="assets/computer.png" alt="About Us" class="about-image" />
+        <div class="about-badge">
+          <span>10 Years</span><br />Trading Experience
+        </div>
+        <div class="about-badge" style="top: 70%; left: 10%">
+          <span>25K+</span><br />Satisfied Customers
+        </div>
+      </div>
+      <div class="about-content">
+        <h2>
+          Meet <span>Our Company</span> Unless <br />
+          Miss The Opportunity
+        </h2>
+        <p>
+          Hey there! You don’t want to miss out on getting to know our company.
+          We’re a fun-loving group who are passionate about what we do. From our
+          innovative products to our top-notch customer service, we’re on a
+          mission to make your life easier. Whether you’re an entrepreneur, a
+          mom, or just looking for something awesome.
+        </p>
+        <a href="#" class="btn-primary">Explore More</a>
+      </div>
+    </section>
+    <div class="partners-cont">
+      <div class="partners">
+        <img src="assets/toppng.com-coinbase-logo-921x200.png" alt="Coinbase" />
+        <img
+          src="assets/spotify.png"
+          style="transform: translateY(8px)"
+          alt="Spotify"
+        />
+        <img src="assets/Zoom_logo_PNG3.png" alt="Slack" />
+        <img src="assets/webflow.png" alt="Dropbox" />
+      </div>
+    </div>
+
+    <div class="trade-with-us">
+      <h2>Navigate The<span> Market With Us</span></h2>
+      <div class="charts-cont">
+        <div class="chart-box">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a
+                href="https://www.tradingview.com/"
+                rel="noopener nofollow"
+                target="_blank"
+                ><span class="blue-text"
+                  >Track all markets on TradingView</span
+                ></a
+              >
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"
+              async
+            >
+                {
+                "symbol": "FX:EURUSD",
+                "width": "100%",
+                "height": "100%",
+                "locale": "en",
+                "dateRange": "12M",
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "autosize": true,
+                "largeChartUrl": ""
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+        <div class="chart-box">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a
+                href="https://www.tradingview.com/"
+                rel="noopener nofollow"
+                target="_blank"
+                ><span class="blue-text"
+                  >Track all markets on TradingView</span
+                ></a
+              >
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"
+              async
+            >
+                {
+                "symbol": "BINANCE:BTCUSDT",
+                "width": "100%",
+                "height": "100%",
+                "locale": "en",
+                "dateRange": "12M",
+                "colorTheme": "dark",
+                "isTransparent": true,
+                "autosize": true,
+                "largeChartUrl": ""
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+      </div>
+
+      <!-- Markets Section -->
+      <section class="markets-section">
+        <div class="container">
+          <h2>
+            Trade the world’s most
+            <span class="highlight">popular markets</span>
+          </h2>
+          <p class="subtext">
+            Find your next trade with access to a wide range of markets.
+          </p>
+
+          <div class="markets-grid">
+            <div class="market-box">
+              <div class="icon-container">
+                <img src="assets/in-equity-11-icon-1.svg" alt="Forex Icon" />
+              </div>
+              <div class="text-content">
+                <h3>Forex</h3>
+                <p>Trade 40+ major, minor, and exotic currency pairs</p>
+              </div>
+            </div>
+
+            <div class="market-box">
+              <div class="icon-container">
+                <img src="assets/in-equity-11-icon-2.svg" alt="Indices Icon" />
+              </div>
+              <div class="text-content">
+                <h3>Indices</h3>
+                <p>Trade 15 of the most famous global indices as CFDs</p>
+              </div>
+            </div>
+
+            <div class="market-box">
+              <div class="icon-container">
+                <img src="assets/in-equity-11-icon-3.svg" alt="Stocks Icon" />
+              </div>
+              <div class="text-content">
+                <h3>Stocks</h3>
+                <p>Trade the most covered & highest-profile asset classes</p>
+              </div>
+            </div>
+
+            <div class="market-box">
+              <div class="icon-container">
+                <img src="assets/in-equity-11-icon-4.svg" alt="Metals Icon" />
+              </div>
+              <div class="text-content">
+                <h3>Metals</h3>
+                <p>Trade metals including Gold and Silver</p>
+              </div>
+            </div>
+
+            <div class="market-box">
+              <div class="icon-container">
+                <img src="assets/in-equity-11-icon-5.svg" alt="Cryptos Icon" />
+              </div>
+              <div class="text-content">
+                <h3>Cryptos</h3>
+                <p>Trade Bitcoin, Ethereum, Ripple and others</p>
+              </div>
+            </div>
+
+            <div class="market-box">
+              <div class="icon-container">
+                <img src="assets/in-equity-11-icon-6.svg" alt="Energies Icon" />
+              </div>
+              <div class="text-content">
+                <h3>Energies</h3>
+                <p>Trade Brent Crude Oil, WTI, Natural Gas and Coal</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <h2>We give you<span> accurate market</span> direction</h2>
+      <div class="charts-cont">
+        <div class="chart-box">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a
+                href="https://www.tradingview.com/"
+                rel="noopener nofollow"
+                target="_blank"
+                ><span class="blue-text"
+                  >Track all markets on TradingView</span
+                ></a
+              >
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
+              async
+            >
+                {
+                "interval": "1m",
+                "width": "100%",
+                "isTransparent": true,
+                "height": "100%",
+                "symbol": "FX:EURUSD",
+                "showIntervalTabs": true,
+                "displayMode": "single",
+                "locale": "en",
+                "colorTheme": "dark"
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+        <div class="chart-box">
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a
+                href="https://www.tradingview.com/"
+                rel="noopener nofollow"
+                target="_blank"
+                ><span class="blue-text"
+                  >Track all markets on TradingView</span
+                ></a
+              >
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js"
+              async
+            >
+                {
+                "interval": "1m",
+                "width": "100%",
+                "isTransparent": true,
+                "height": "100%",
+                "symbol": "BINANCE:BTCUSDT",
+                "showIntervalTabs": true,
+                "displayMode": "single",
+                "locale": "en",
+                "colorTheme": "dark"
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PRicing section -->
+    <section class="pricing">
+      <!-- Dark Overlay -->
+      <div class="pricing-overlay"></div>
+
+      <!-- Content (Above the Overlay) -->
+      <div class="pricing-content">
+        <h2 class="pricing-title">Our <span>Pricing</span> Plan</h2>
+        <!-- <p>
+          Hey there! Just wanted to give you a heads up on our pricing plan.
+          It's affordable and flexible. Check it out!
+        </p> -->
+
+        <div class="pricing-cards">
+          <!-- Basic Plan -->
+          <div class="pricing-card">
+            <h3>BASIC</h3>
+            <p class="pricing-price">$99</p>
+            <ul>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Over 20 trading instruments
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Unlimited learning access
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                24/7 technical support
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Personal training
+              </li>
+            </ul>
+            <a href="#" class="btn-primary">Choose Plan</a>
+          </div>
+
+          <!-- Standard Plan -->
+          <div class="pricing-card">
+            <h3>STANDARD</h3>
+            <p class="pricing-price">$149</p>
+            <ul>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Over 50 trading instruments
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Shared account manager
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                24/7 technical support
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Personal training
+              </li>
+            </ul>
+            <a href="#" class="btn-primary">Choose Plan</a>
+          </div>
+
+          <!-- Premium Plan -->
+          <div class="pricing-card">
+            <h3>PREMIUM</h3>
+            <p class="pricing-price">$199</p>
+            <ul>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Over 100 trading instruments
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Personal account manager
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                24/7 technical support
+              </li>
+              <li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#18cb96"
+                >
+                  <path
+                    d="m424-312 282-282-56-56-226 226-114-114-56 56 170 170ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm0-560v560-560Z"
+                  />
+                </svg>
+                Personal training
+              </li>
+            </ul>
+            <a href="#" class="btn-primary">Choose Plan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials section -->
+    <section class="testimonial-card-section">
+      <div class="testimonial-illustration">
+        <img src="assets/illustrate.png" alt="" />
+      </div>
+      <div class="testimonial-card-cont">
+        <h2>what <span>our clients</span> have to say</h2>
+        <div class="testimonial-card">
+          <div class="testimonial-image">
+            <img
+              src="assets/1.png"
+              alt="Customer 1"
+              id="testimonial-image"
+              style="background: white"
+            />
+          </div>
+          <div class="testimonial-content">
+            <h3 class="testimonial-title">5 Star rating!</h3>
+            <div class="testimonial-stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span
+              ><span>★</span>
+            </div>
+            <p class="testimonial-text" id="testimonial-text">
+              I love the way the platform is very easy to use, no complicated
+              UI. its user friendly. Totally amazing!
+            </p>
+            <div class="testimonial-author">
+              <p class="author-name" id="author-name">Micheal Reeves</p>
+              <p class="author-username" id="author-username">@michealreeves</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="steps" id="steps">
+      <h2>How It <span>Works</span></h2>
+      <div class="features-container">
+        <div class="feature">
+          <img src="assets/icons8-sign-up-64.png" alt="Icon" />
+          <h3>1. Sign Up</h3>
+          <p>Create an account in few quick steps</p>
+          <a href="https://cexbuy.netlify.app/pages/signup.html">Get Started</a>
+        </div>
+        <div class="feature">
+          <img src="assets/icons8-wallet-50.png" alt="Icon" />
+          <h3>2. Fund Account</h3>
+          <p>Fund your wallet with any of our payment options</p>
+          <a href="https://cexbuy.netlify.app/pages/signup.html">Get Started</a>
+        </div>
+        <div class="feature">
+          <img src="assets/icons8-transaction-50.png" alt="Icon" />
+          <h3>3. Purchase Plan</h3>
+          <p>Purchase a plan or subscription from your dashboard</p>
+          <a href="https://cexbuy.netlify.app/pages/signup.html">Get Started</a>
+        </div>
+        <div class="feature">
+          <img src="assets/icons8-positive-dynamic-50.png" alt="Icon" />
+          <h3>4. ROI</h3>
+          <p>Wait for plan duration to elapse and get your profits</p>
+          <a href="https://cexbuy.netlify.app/pages/signup.html">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section class="platforms-section">
+      <div class="container">
+        <h2>Discover Multiple <span class="highlight">Platforms</span></h2>
+
+        <div class="platforms-grid">
+          <!-- MetaTrader 4 -->
+          <div class="platform-card">
+            <img
+              src="https://superglobaltrade.com/img/new/mt4.svg"
+              alt="MetaTrader 4 Logo"
+              class="platform-logo"
+            />
+            <h3 class="platform-title">MetaTrader 4</h3>
+            <p class="platform-subtext">
+              The world’s most popular trading platform
+            </p>
+            <img
+              src="assets/mt4.webp"
+              alt="MetaTrader 4 Screens"
+              class="platform-image"
+            />
+          </div>
+
+          <!-- MetaTrader 5 -->
+          <div class="platform-card">
+            <img
+              src="https://superglobaltrade.com/img/new/mt5.svg"
+              alt="MetaTrader 5 Logo"
+              class="platform-logo"
+            />
+            <h3 class="platform-title">MetaTrader 5</h3>
+            <p class="platform-subtext">
+              Multi-asset trading on one powerful platform
+            </p>
+            <img
+              src="assets/mt5.webp"
+              alt="MetaTrader 5 Screens"
+              class="platform-image"
+            />
+          </div>
+
+          <!-- Super Global Trade -->
+          <div class="platform-card">
+            <img
+              src="assets/logo-white.png"
+              alt="Super Global Trade Logo"
+              class="platform-logo"
+            />
+            <h3 class="platform-title">SkyeTrade App</h3>
+            <p class="platform-subtext">Trade on the go with SkyeTrade App</p>
+            <img
+              src="assets/hfm.webp"
+              alt="Super Global Trade App"
+              class="platform-image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer">
+        <div class="footer-column">
+          <div class="logoCont">
+            <img src="assets/logo-white.png" alt="logo" />
+          </div>
+          <p>
+            SkyeTrade – Smart Investing, Reliable Returns. Join us today and let
+            your money work for you!
+          </p>
+          <a href="#">Read More</a>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <div class="footer-line"></div>
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#plans">Plans and Subscriptions</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <div class="footer-line"></div>
+          <p>📍 134 St Avere's way, Las Vegas, ID 90909</p>
+          <p>📞 123-456-7890</p>
+          <p>📧 info@skye-trade.com</p>
+          <!-- <a href="#">Our Office Locations</a> -->
+        </div>
+      </div>
+      <div class="footer-bottom">
+        Copyright &copy; 2024 skye-trade.com. All rights reserved.
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
