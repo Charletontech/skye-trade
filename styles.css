@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap");
 /* General Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Winky Rough", sans-serif;
+  font-family: "National Park", sans-serif;
+  font-optical-sizing: auto;
 }
 
 :root {
@@ -32,6 +33,40 @@ html {
   width: 5rem;
 }
 
+/* ALERT STYLES */
+.earning-alert {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  z-index: 9999;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.earning-alert.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.earning-alert .icon {
+  font-size: 20px;
+}
+
+.earning-alert .alert-text strong {
+  color: #00ff99;
+}
+
+/* HERO SECTION */
 .hero-section {
   position: relative;
   height: 100vh;
@@ -44,7 +79,7 @@ html {
   position: absolute;
   inset: 0;
   background: url("./assets/32806971.jpg") center/cover no-repeat;
-  animation: zoom 10s ease-in-out infinite;
+  /* animation: zoom 10s ease-in-out infinite; */
   z-index: 0;
 }
 .overlay {
@@ -248,6 +283,11 @@ html {
     justify-content: center;
     overflow-y: visible;
   }
+  .hero-bg {
+    height: 100%;
+    background: url("./assets/32806971.jpg") center/cover no-repeat;
+    animation: none;
+  }
   .tape {
     transform: translateY(-1rem);
   }
@@ -310,7 +350,7 @@ html {
   margin-top: 70px;
 }
 
-/* Footer */
+/* PARTNERS SECTION */
 .partners-cont {
   text-align: center;
   padding: 15px;
@@ -329,7 +369,7 @@ html {
   margin: 10px;
 }
 
-/* About Us */
+/* ABOUT US SECTION */
 .about {
   display: flex;
   align-items: center;
@@ -428,6 +468,164 @@ html {
   }
 }
 
+/* explainer/trust VIDEO SECTION */
+.trust-section {
+  background-color: #000;
+  color: #fff;
+  padding: 60px 20px;
+}
+
+.trust-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.trust-image {
+  position: relative;
+  flex: 1;
+}
+
+.trust-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  background-color: white;
+  color: var(--green);
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.play-button:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.trust-content {
+  flex: 1;
+  text-align: center;
+}
+
+.trust-content h3 {
+  font-size: 20px;
+  color: var(--green);
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.trust-content p {
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.learn-more-btn {
+  background-color: var(--green);
+  color: var(--dark);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.learn-more-btn:hover {
+  background-color: #218838;
+}
+
+.learn-more-btn span {
+  font-size: 18px;
+}
+
+/* Tablet and above */
+@media (min-width: 768px) {
+  .trust-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .trust-content {
+    text-align: left;
+  }
+
+  .trust-content p {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* TRADING CONDITIONS SECTION */
+.trading-conditions-section {
+  background-color: #000;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.trading-conditions-section .highlight {
+  color: var(--green);
+}
+
+.trading-conditions-section .subtext {
+  font-size: 1rem;
+  color: #ccc;
+  max-width: 800px;
+  margin: 20px auto 40px;
+  line-height: 1.6;
+}
+
+.trading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.badge img {
+  width: 120px;
+  height: auto;
+}
+
+.register-btn {
+  padding: 12px 24px;
+  background-color: var(--green);
+  color: var(--dark);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: var(--gold-yellow);
+}
+
 /* trade-with-us section */
 .trade-with-us {
   width: 100%;
@@ -475,6 +673,131 @@ html {
   .chart-box img {
     width: 100%;
     height: 100%;
+  }
+}
+
+/* FUNDS SECURITY SECTION */
+.security-section {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 20px;
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.security-left {
+  width: 50%;
+}
+
+.security-image-container {
+  width: 50%;
+}
+
+.security-image {
+  display: block;
+  width: 378px;
+  height: 360px;
+  margin: auto;
+}
+
+.security-right {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.security-item {
+  display: flex;
+  align-items: center;
+}
+
+.security-item img {
+  margin-right: 10px;
+  max-width: 30px;
+  height: auto;
+}
+
+.security-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.security-actions a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.login-button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.login-button svg {
+  margin-left: 5px;
+}
+
+.create-account-button {
+  background-color: var(--green);
+  color: var(--dark);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.create-account-button svg {
+  margin-left: 5px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .security-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .security-image-container {
+    width: 100%;
+  }
+
+  .security-left {
+    width: 100%;
+    padding: 1rem;
+    padding-right: 0;
+    margin-top: 20px;
+  }
+
+  .security-right {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+
+  .security-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .security-actions > * {
+    width: 100%;
+  }
+
+  .login-button,
+  .create-account-button {
+    justify-content: center;
   }
 }
 
@@ -865,7 +1188,7 @@ html {
   .testimonial-card-cont {
     width: 100%;
     text-align: center;
-    height: 33rem;
+    height: 36rem;
   }
 
   .testimonial-illustration img {
@@ -1009,6 +1332,101 @@ html {
   max-width: 320px;
   border-radius: 8px;
   object-fit: contain;
+}
+
+/* FAQ SECION */
+.faq-section {
+  background-color: #000;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.faq-title {
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: var(--green); /* Example accent color */
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.faq-item {
+  background-color: #111;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.faq-question {
+  background-color: #222;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.faq-question::before {
+  content: ""; /* Remove the text arrow */
+  font-family: "Material Icons";
+  font-size: 1.2em; /* Adjust size as needed */
+  margin-right: 10px;
+  vertical-align: middle; /* Adjust vertical alignment if necessary */
+}
+
+.faq-question::before {
+  content: "play_arrow"; /* Google "play" arrow icon */
+}
+
+.faq-question.active::before {
+  content: "expand_more"; /* Google "expand more" (down arrow) icon */
+}
+
+.faq-answer {
+  background-color: #333;
+  padding: 15px;
+  display: none; /* Initially hidden */
+  white-space: pre-line; /* Preserve line breaks */
+  line-height: 25px;
+}
+
+.faq-answer.open {
+  display: block;
+}
+
+.faq-more {
+  background-color: var(--green);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.faq-more svg {
+  margin-left: 5px;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .faq-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* FOOTER SECTION */
