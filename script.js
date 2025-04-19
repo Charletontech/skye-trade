@@ -152,7 +152,7 @@ const testimonials = [
   {
     image:
       "https://superglobaltrade.com/uploads/testimonies/thumb/998bbc715738adbee6391aa77185ed78.jpg",
-    text: "Am Allen from North Carolina, Currently living in Arizona with my Family, i came across Super Global Trade while browsing through facebook, I accessed the site and contact them via whatsapp and i started investing with $5000 and am making $51,560.00 Weekly.",
+    text: "Am Allen from North Carolina, Currently living in Arizona with my Family, i came across SkyeTrade while browsing through facebook, I accessed the site and contact them via whatsapp and i started investing with $5000 and am making $51,560.00 Weekly.",
     name: "Allen Brewer",
     username: "@allenbrewer02",
   },

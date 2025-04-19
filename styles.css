@@ -1157,14 +1157,14 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 36rem;
-  overflow: hidden;
+  height: 38rem;
+  overflow: visible;
   flex-direction: column;
 }
 
 .testimonial-illustration img {
-  width: 80%;
-  height: 80%;
+  width: 60%;
+  height: 60%;
   animation: bounceUp 2s ease-in-out infinite alternate;
 }
 
@@ -1285,9 +1285,13 @@ html {
     height: 41rem;
   }
 
+  .testimonial-illustration {
+    height: 20rem;
+  }
+
   .testimonial-illustration img {
-    width: 90%;
-    height: 70%;
+    width: 15rem;
+    height: 17rem;
   }
 }
 
@@ -1535,8 +1539,9 @@ html {
   }
 
   .crypto-logos img {
-    width: 6rem;
-    height: 6rem;
+    width: 4rem;
+    height: 4rem;
+    margin: 1rem;
   }
 
   .crypto-methods h2 {
