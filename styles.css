@@ -167,7 +167,7 @@ html {
   text-align: center;
 }
 .hero-content.fade-in {
-  animation: fadeInUp 1.5s ease-out;
+  animation: fadeInUp 3s ease-out;
 }
 .text-content h1 {
   font-size: 52px;
@@ -179,6 +179,42 @@ html {
   width: 85%;
   line-height: 30px;
 }
+
+/* carousel animation */
+.text-content {
+  opacity: 1; /* Ensure it's initially visible */
+  transform: translateY(0); /* Ensure it's initially in place */
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Add transitions */
+}
+
+.text-content.fade-out-slide-up {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.text-content.fade-in-slide-down {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* for image side */
+.image-content {
+  overflow: hidden; /* Clip the image during animation */
+}
+
+.image-content img {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Add transition */
+}
+
+.image-content img.slide-in {
+  transform: translateX(0); /* Slide into view */
+  opacity: 1;
+}
+
+/* animation ends */
+
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -246,6 +282,7 @@ html {
     transform: translateY(0);
   }
 }
+
 @media (min-width: 768px) {
   .hero-content {
     flex-direction: row;
@@ -301,11 +338,12 @@ html {
     padding: 1rem 2rem;
     text-align: left;
     width: 100%;
+    gap: 2rem;
   }
 
   .image-content img {
-    max-width: 107%;
-    height: 107%;
+    max-width: 94%;
+    height: 115%;
   }
 }
 
@@ -1244,7 +1282,7 @@ html {
   .testimonial-card-cont {
     width: 100%;
     text-align: center;
-    height: 36rem;
+    height: 41rem;
   }
 
   .testimonial-illustration img {
