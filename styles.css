@@ -716,6 +716,92 @@ html {
   }
 }
 
+/* SECOND PLATFORMS SECTION */
+.trading-platforms-section {
+  background-color: #07141c;
+  color: #fff;
+  padding: 60px 20px;
+  font-family: sans-serif;
+}
+
+.trading-platforms-section .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.trading-platforms-section .content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.image-container {
+  flex: 1 1 45%;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.text-container {
+  flex: 1 1 50%;
+}
+
+.text-container h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.text-container h2 span {
+  font-weight: 300;
+}
+
+.text-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.text-container li {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.text-container i {
+  color: var(--green, #00cc66);
+  margin-right: 10px;
+}
+
+.text-container a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+.text-container a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .trading-platforms-section .content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .text-container h2 {
+    font-size: 24px;
+  }
+
+  .text-container {
+    flex: 1 1 100%;
+  }
+}
+
 /* FUNDS SECURITY SECTION */
 .security-section {
   background-color: #000;
