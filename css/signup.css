@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap");
 :root {
   --green: #18cb96;
-  --dark-overlay: rgba(0, 0, 0, 0.7);
+  --dark-overlay: rgba(0, 0, 0, 0.6);
   --bg: #040b12;
   --text-primary: #fff;
   --input-bg: rgba(255, 255, 255, 0.1);
@@ -192,7 +192,7 @@ html {
     padding: 30px;
     width: 75%;
     margin: auto;
-    background-color: #040b12a8;
+    background-color: #040b126e;
   }
 
   .form-group input[type="text"],
