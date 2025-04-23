@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap");
+:root {
+  --green: #18cb96;
+  --dark-overlay: rgba(0, 0, 0, 0.7);
+  --bg: #040b12;
+  --text-primary: #fff;
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-border: rgba(255, 255, 255, 0.2);
+  --input-focus-border: var(--green);
+  --button-primary: var(--green);
+  --button-text: #fff;
+  --error-color: #e74c3c;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "National Park", sans-serif;
+  background-image: url("../assets/32806971.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: var(--dark-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-container {
+  background-color: #040b12d5;
+  border-radius: 8px;
+  padding: 40px;
+  width: 400px;
+  color: var(--text-primary);
+  height: auto;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  max-width: 150px;
+  height: auto;
+}
+
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="password"],
+.form-group select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group input[type="password"]:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+}
+
+.form-group input[type="file"] {
+  display: none; /* Hide the default file input */
+}
+
+.file-upload-wrapper {
+  border: 1px dashed var(--input-border);
+  border-radius: 5px;
+  padding: 10px;
+  background-color: var(--input-bg);
+  text-align: center;
+  cursor: pointer;
+}
+
+.file-upload-wrapper.active {
+  border-color: var(--input-focus-border);
+}
+
+.file-upload-text {
+  color: var(--text-primary);
+}
+
+.file-preview-container {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.file-preview {
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.file-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: var(--button-primary);
+  color: var(--button-text);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.terms-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.terms-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.terms-group label {
+  font-weight: normal;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .signup-container {
+    padding: 30px;
+    width: 75%;
+    margin: auto;
+    background-color: #040b12a8;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="password"],
+  .form-group select {
+    width: 100%;
+  }
+
+  .form-navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
