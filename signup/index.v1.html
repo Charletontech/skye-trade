@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/signup.css" />
+    <link rel="shortcut icon" href="assets/arrow.png" type="image/x-icon" />
+    <title>Sign Up - Skye-Trade</title>
+  </head>
+  <body>
+    <section class="overlay">
+      <div class="signup-container">
+        <div class="logo-container">
+          <img src="../assets/logo-white.png" alt="Logo" class="logo" />
+        </div>
+
+        <form id="signupForm">
+          <div class="step active" id="step1">
+            <h2>Basic Information</h2>
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" required />
+              <div class="error-message" id="fullNameError"></div>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" required />
+              <div class="error-message" id="usernameError"></div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+              <div class="error-message" id="emailError"></div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" />
+              <div class="error-message" id="phoneError"></div>
+            </div>
+            <div class="form-navigation">
+              <button type="button" class="btn btn-primary next-step">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <div class="step" id="step2">
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <div class="error-message" id="genderError"></div>
+            </div>
+            <h2>Location & Currency</h2>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" name="country" required>
+                <option value="" disabled selected>Select Country</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Nigeria">Nigeria</option>
+              </select>
+              <div class="error-message" id="countryError"></div>
+            </div>
+            <div class="form-group">
+              <label for="currency">Currency</label>
+              <select id="currency" name="currency" required>
+                <option value="" disabled selected>Select Currency</option>
+                <option value="USD">USD ($)</option>
+                <option value="NGN">NGN (₦)</option>
+              </select>
+              <div class="error-message" id="currencyError"></div>
+            </div>
+            <div class="form-group">
+              <label for="zipCode">ZIP Code (Optional)</label>
+              <input type="text" id="zipCode" name="zipCode" />
+            </div>
+            <div class="form-navigation">
+              <button type="button" class="btn btn-secondary prev-step">
+                Previous
+              </button>
+              <button type="button" class="btn btn-primary next-step">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <div class="step" id="step3">
+            <h2>Password & Verification</h2>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" required />
+              <div class="error-message" id="passwordError"></div>
+            </div>
+            <div class="form-group">
+              <label for="repeatPassword">Repeat Password</label>
+              <input
+                type="password"
+                id="repeatPassword"
+                name="repeatPassword"
+                required
+              />
+              <div class="error-message" id="repeatPasswordError"></div>
+            </div>
+            <div class="form-group">
+              <label for="idCardFront">Upload ID Card (Front)</label>
+              <div
+                class="file-upload-wrapper"
+                onclick="document.getElementById('idCardFront').click()"
+              >
+                <span class="file-upload-text"
+                  >Click to upload front of ID</span
+                >
+              </div>
+              <input
+                type="file"
+                id="idCardFront"
+                name="idCardFront"
+                accept="image/*"
+              />
+              <div class="file-preview-container" id="idCardFrontPreview"></div>
+              <div class="error-message" id="idCardFrontError"></div>
+            </div>
+            <div class="form-group">
+              <label for="idCardBack">Upload ID Card (Back)</label>
+              <div
+                class="file-upload-wrapper"
+                onclick="document.getElementById('idCardBack').click()"
+              >
+                <span class="file-upload-text">Click to upload back of ID</span>
+              </div>
+              <input
+                type="file"
+                id="idCardBack"
+                name="idCardBack"
+                accept="image/*"
+              />
+              <div class="file-preview-container" id="idCardBackPreview"></div>
+              <div class="error-message" id="idCardBackError"></div>
+            </div>
+            <div class="form-navigation">
+              <button type="button" class="btn btn-secondary prev-step">
+                Previous
+              </button>
+              <button type="button" class="btn btn-primary next-step">
+                Next
+              </button>
+            </div>
+          </div>
+
+          <div class="step" id="step4">
+            <h2>Terms & Conditions</h2>
+            <div class="terms-group">
+              <input type="checkbox" id="terms" name="terms" required />
+              <label for="terms"
+                >I have read and agree to the
+                <a href="#" style="color: var(--green)"
+                  >Terms & Conditions</a
+                ></label
+              >
+              <div class="error-message" id="termsError"></div>
+            </div>
+            <div class="form-navigation">
+              <button type="button" class="btn btn-secondary prev-step">
+                Previous
+              </button>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+          </div>
+        </form>
+
+        <div style="text-align: center; margin-top: 20px">
+          Already have an account?
+          <a href="/login/index.html" style="color: var(--green)"
+            >Sign in here</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <script src="../scripts/signup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,507 @@
+:root {
+  --primary: #1f1f2e;
+  --secondary: #2c2c3b;
+  --highlight: #18cb96;
+  --light: #f1f1f1;
+  --green: #00b894;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary);
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary);
+  padding: 10px 20px;
+}
+
+header .logo {
+  flex: 1;
+}
+
+header img {
+  width: 9rem;
+  height: 3rem;
+}
+
+header .user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header .user-info button {
+  background: var(--highlight);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.left-panel,
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.balance-card {
+  background: var(--secondary);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.balance-card div {
+  margin: 5px 0;
+}
+
+.trade-form {
+  background: var(--secondary);
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.trade-form input,
+.trade-form select,
+.trade-form button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.trade-form input,
+.trade-form select {
+  flex: 1;
+  min-width: 200px;
+}
+
+.trade-form button {
+  background: var(--highlight);
+  color: white;
+  cursor: pointer;
+  flex: 1 0 auto;
+  min-width: fit-content;
+}
+
+.right-panel h2:nth-child(1) {
+  background-color: var(--secondary);
+  margin-left: 0;
+  padding: 14px;
+  border-radius: 5px;
+}
+
+.chart-container {
+  background: var(--secondary);
+  padding: 10px;
+  border-radius: 8px;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid white;
+}
+
+#tradingview-widget {
+  width: 100%;
+  height: auto;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background: var(--secondary);
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  overflow-y: auto;
+  transform: translateX(0); /* Make sidebar visible by default */
+}
+
+.sidebar.show {
+  transform: translateX(0);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 10px 0;
+  /* border-bottom: 1px solid #4a5568; */
+}
+
+.sidebar li:last-child {
+  border-bottom: none;
+}
+
+.sidebar a {
+  color: var(--light);
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  color: white;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  display: none;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: transform 0.4s ease-in-out;
+}
+
+.hamburger.active .bar1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active .bar2 {
+  opacity: 0;
+}
+
+.hamburger.active .bar3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
+}
+#overlay.show {
+  display: block;
+}
+
+/* Trade in Progress Styles */
+.trade-in-progress {
+  background-color: #2c2c3b;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffffff;
+  height: auto;
+}
+
+.trade-in-progress h3 {
+  margin-top: 0;
+  color: #18cb96;
+}
+
+.trade-in-progress p {
+  margin-bottom: 0;
+}
+
+.progress-bar {
+  background-color: #4a5568;
+  height: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  background-color: #18cb96;
+  height: 10px;
+  border-radius: 5px;
+  width: 75%;
+  transition: width 0.5s ease;
+}
+
+.trade-details {
+  background-color: #374151;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: flex;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  border: 1px solid white;
+  gap: 10px;
+  width: 100%;
+}
+
+.trade-details div {
+  width: 50%;
+}
+
+.trade-details div strong {
+  color: var(--green);
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+  .left-panel,
+  .right-panel {
+    width: 100%;
+  }
+  .hamburger {
+    display: flex;
+  }
+  header .user-info {
+    display: none;
+  }
+  header {
+    flex-wrap: wrap;
+  }
+  header .logo {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .balance-card {
+    flex-direction: column;
+    gap: 7px;
+    border: 1px solid white;
+  }
+
+  .balance-card:hover {
+    border: 1px solid var(--green);
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    margin-right: 1rem;
+    height: 80vh;
+    top: 15vh;
+    left: 1rem;
+
+    border-radius: 8px;
+    border: 1px solid white;
+  }
+  .main-container {
+    flex-direction: row;
+    gap: 20px;
+    padding-left: 270px;
+    height: 87vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .left-panel,
+  .right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: auto;
+    height: auto; /* Let content determine height */
+  }
+
+  .balance-card div {
+    display: inline-flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .left-panel {
+    flex: 1 0 35%;
+    transform: scale(0.85);
+    margin-top: -2.6rem;
+  }
+
+  .right-panel {
+    flex: 1 0 65%;
+    transform: translateY(-1rem);
+    padding: 0 2rem;
+    height: 550px;
+    overflow-y: auto;
+  }
+
+  .chart-container {
+    width: 95%;
+    height: auto;
+  }
+
+  .hamburger {
+    display: none;
+  }
+  header .user-info {
+    display: flex;
+  }
+}
+
+/* KYC Form Styles */
+.kyc-form-container {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--secondary);
+  margin-bottom: 20px;
+}
+
+.kyc-form-container h2 {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.kyc-form-group {
+  margin-bottom: 15px;
+}
+
+.kyc-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--light);
+}
+
+.kyc-form-group input,
+.kyc-form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4a5568;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #374151;
+  color: white;
+}
+
+.kyc-form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvgxmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  padding-right: 30px;
+}
+
+.kyc-form-group input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.kyc-form-group .file-upload-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: #374151;
+  border: 2px dashed #4a5568;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.kyc-form-group .file-upload-text {
+  margin-right: 10px;
+  color: var(--light);
+  font-size: 1rem;
+}
+
+.kyc-form-group .file-upload-button {
+  background-color: var(--highlight);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.kyc-form-group .preview-container {
+  margin-top: 10px;
+  display: none;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kyc-form-group .preview-container img {
+  max-width: 150px;
+  max-height: 150px;
+  border: 1px solid #4a5568;
+  border-radius: 5px;
+}
+
+.kyc-form-group .preview-container .remove-preview {
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.kyc-form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.kyc-form-actions button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.kyc-form-actions button[type="button"] {
+  background-color: #4a5568;
+  color: white;
+}
+
+.kyc-form-actions button[type="submit"] {
+  background-color: var(--highlight);
+  color: white;
+}
