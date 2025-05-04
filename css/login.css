@@ -68,7 +68,7 @@ html {
 
 .form-group input[type="text"],
 .form-group input[type="password"] {
-  width: calc(100% - 20px);
+  width: calc(100%);
   padding: 10px;
   border: 1px solid var(--input-border);
   border-radius: 5px;

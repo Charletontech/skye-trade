@@ -1,3 +1,4 @@
+import { url, toast } from "./utils.js";
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("signupForm");
   const successMessage = document.getElementById("successMessage");
@@ -35,31 +36,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      //   // Actually send request to a fake API
-      //   const response = await fetch("https://example.com/api/register", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(data),
-      //   });
-
-      //   if (!response.ok) {
-      //     throw new Error("Something went wrong!");
-      //   }
-
-      // Simulate random API success or failure
-      const randomSuccess = Math.random() < 0.7; // 70% success rate
-
-      await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (randomSuccess) {
-            resolve(); // pretend it succeeded
-          } else {
-            reject(new Error("Random API failure!")); // pretend it failed
-          }
-        }, 2000); // simulate 2 sec network delay
+      // Actually send request to API
+      const response = await fetch(url() + "/api/v1/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          credentials: true,
+        },
+        body: JSON.stringify(data),
       });
+
+      let message = await response.json();
+      if (!response.ok) {
+        toast("info", "Oops!", message.error);
+        throw new Error("Something went wrong! " + message.error);
+      }
+      toast("success", "Success", message.data);
+
+      // // Simulate random API success or failure
+      // const randomSuccess = Math.random() < 0.7; // 70% success rate
+
+      // await new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     if (randomSuccess) {
+      //       resolve(); // pretend it succeeded
+      //     } else {
+      //       reject(new Error("Random API failure!")); // pretend it failed
+      //     }
+      //   }, 2000); // simulate 2 sec network delay
+      // });
 
       // If successful
       successMessage.style.display = "block";
@@ -67,9 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
       successMessage.textContent = "🎉 Registration Successful!";
 
       // Reset form
-      form.reset();
+      // form.reset();
     } catch (error) {
       // If failed
+      console.log(error);
       successMessage.style.display = "block";
       successMessage.style.backgroundColor = "#7d1d1d"; // red background
       successMessage.textContent = "❌ Registration Failed. Please try again.";
