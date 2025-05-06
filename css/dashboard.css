@@ -6,6 +6,7 @@
   --highlight: #18cb96;
   --light: #f1f1f1;
   --green: #00b894;
+  --border: #d1d1d1;
 }
 
 * {
@@ -57,6 +58,120 @@ body {
   text-decoration: none;
 }
 
+/* Deposit methods modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: #1f1f2e;
+  color: #f1f1f1;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #18cb96;
+}
+
+.crypto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.crypto-item {
+  background: #2c2c3b;
+  padding: 1rem;
+  border: 1px solid #666;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.crypto-item i {
+  font-size: 1.5rem;
+  color: #00b894;
+}
+
+.modal-overlay .wallet {
+  font-family: monospace;
+  cursor: pointer;
+  background: #1f1f2e;
+  padding: 0.4rem;
+  word-break: break-all;
+  border: 1px dashed #888;
+  border-radius: 4px;
+}
+
+.modal-overlay .wallet:hover {
+  background: #333;
+}
+
+.modal-overlay button {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 0.7rem;
+  background: #00b894;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-overlay button:hover {
+  background: #00a882;
+}
+
+.hidden {
+  display: none;
+}
+
+.crypto-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+  filter: brightness(1.1); /* optional: tweak look on dark bg */
+}
+
+.crypto-icon-letter {
+  width: 24px;
+  height: 24px;
+  background-color: #18cb96;
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 18px;
+  font-style: italic;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+#closeDepositModal {
+  cursor: pointer;
+  color: var(--green);
+}
+
 /* main dashboard */
 header {
   display: flex;
@@ -90,10 +205,19 @@ header .user-info button {
   cursor: pointer;
 }
 
+.tape {
+  width: 100%;
+  height: 32px;
+  overflow: hidden;
+  /* margin-bottom: 0.7rem; */
+}
+
+/* main container */
 .main-container {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  margin-top: 0rem;
 }
 
 .left-panel,
@@ -202,20 +326,17 @@ header .user-info button {
 
 .sidebar li {
   padding: 10px 0;
-  /* border-bottom: 1px solid #4a5568; */
-}
-
-.sidebar li:last-child {
-  border-bottom: none;
 }
 
 .sidebar a {
   color: var(--light);
   text-decoration: none;
+  transition: all 0.8s ease-in-out;
 }
 
 .sidebar a:hover {
-  color: white;
+  color: var(--green);
+  transition: all 0.3s ease-in-out;
 }
 
 .hamburger {
@@ -254,7 +375,7 @@ header .user-info button {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
-  z-index: 999;
+  z-index: 9;
 }
 #overlay.show {
   display: block;
@@ -375,17 +496,19 @@ header .user-info button {
   .sidebar {
     margin-right: 1rem;
     height: 80vh;
-    top: 15vh;
+    top: 19vh;
     left: 1rem;
-
     border-radius: 8px;
     border: 1px solid white;
   }
+
   .main-container {
     flex-direction: row;
-    gap: 20px;
+    gap: 5px;
     padding-left: 270px;
-    height: 87vh;
+    height: 80vh;
+    margin-top: 1.5rem;
+    padding-top: 0;
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -397,7 +520,17 @@ header .user-info button {
     flex-direction: column;
     gap: 10px;
     width: auto;
-    height: auto; /* Let content determine height */
+    height: auto;
+  }
+
+  .right-panel {
+    padding: 0;
+    margin-left: -2rem;
+  }
+
+  #tradingview-widget {
+    width: 100%;
+    height: 100%;
   }
 
   .balance-card div {
@@ -697,4 +830,119 @@ header .user-info button {
   .input-group input {
     font-size: 0.95rem;
   }
+}
+
+/* WITHDRAWAL FORM STYLES */
+.withdraw-section {
+  padding: 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  max-width: 600px;
+  margin: auto;
+}
+
+.withdraw-section .subtext {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #aaa;
+}
+
+.withdraw-section .withdraw-card {
+  background: white;
+  color: #333;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.withdraw-section .balance-text {
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+}
+
+.withdraw-section .input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  background: #f9f9f9;
+}
+
+.withdraw-section .input-group span,
+.withdraw-section .input-group i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.withdraw-section .input-group input {
+  border: none;
+  outline: none;
+  flex: 1;
+  background: transparent;
+  font-size: 1rem;
+}
+
+.withdraw-section select {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  background: #f9f9f9;
+}
+
+.withdraw-section button#proceed {
+  background-color: var(--green);
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.withdraw-section .history-card {
+  background: white;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.withdraw-section .history-card h3 {
+  margin-bottom: 1rem;
+}
+
+.withdraw-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.withdraw-section table th,
+.withdraw-section table td {
+  padding: 0.6rem;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.withdraw-section .history-card {
+  overflow-x: auto;
+}
+
+.withdraw-section .history-card table {
+  min-width: 500px;
+}
+
+.withdraw-section .history-card::-webkit-scrollbar {
+  height: 6px;
+}
+.withdraw-section .history-card::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }

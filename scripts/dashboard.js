@@ -4,6 +4,33 @@ function showNotLoggedModal() {
   const notLoggedDisplay = document.querySelector(".notLoggedCont");
   notLoggedDisplay.classList.add("showNotLogged");
 }
+
+// Deposit methods modal
+document.getElementById("depositBtn").addEventListener("click", toggleModal);
+document
+  .getElementById("closeDepositModal")
+  .addEventListener("click", toggleModal);
+function toggleModal() {
+  document.getElementById("depositModal").classList.toggle("hidden");
+}
+
+// Copy wallet address on click
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("wallet")) {
+    const text = e.target.dataset.wallet;
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert("Address copied: " + text);
+      })
+      .catch(() => {
+        alert("Failed to copy address.");
+      });
+  }
+});
+
+var usernameG;
+var balanceG;
 QuestZender(url() + "/dashboard/me", "GET", null, showNotLoggedModal)
   .then((response) => {
     if (!response.ok) {
@@ -15,6 +42,8 @@ QuestZender(url() + "/dashboard/me", "GET", null, showNotLoggedModal)
   .then((data) => {
     if (!data) return;
     const { username, balance, btc, currency, accountType } = data.data;
+    usernameG = username;
+    balanceG = balance;
 
     const usernameDis = document.querySelector(".user-info strong");
     const balanceDis = document.getElementById("balanceDis");
@@ -107,10 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
         url() + "/dashboard/new-trade",
         "POST",
         JSON.stringify(payload),
-        null,
         showNotLoggedModal
       );
-
       var message = await response.json();
       console.log(message);
       if (response.status == 402) {
@@ -370,31 +397,155 @@ function handleFileChange(event, previewId) {
   }
 }
 
-// HANDLE WITHDRAWAL LOGIC
-function submitPin(e) {
+// LOGIC TO HANDLE SUBMIT TAX CODE
+async function submitTaxCode(e) {
   e.preventDefault();
-  console.log("first");
   const pin = document.getElementById("withdrawPin").value.trim();
 
   if (!pin) {
-    alert("Please enter your withdrawal PIN.");
+    toast("info", "No Tax Code", "Please enter your tax code.");
     return;
   }
 
-  // Simulate form submission
-  console.log("Submitting PIN:", pin);
+  // verify code with api
+  const response = await QuestZender(
+    url() + `/dashboard/verify-tax-code/?taxCode=${pin}`,
+    "GET",
+    null,
+    showNotLoggedModal
+  );
+  const message = await response.json();
+  if (!response.ok) {
+    toast("error", "Oops!", message.error);
+    return;
+  }
+  toast("success", "Verification successful", message.data);
+  handleWithdrawal();
+}
 
-  // Fake API behavior simulation
-  setTimeout(() => {
-    const success = Math.random() > 0.3; // 70% chance of success
+// HANDLE WITHDRAWAL LOGIC AFTER SUCCESSFUL TAX CODE VERIFICATION
+async function handleWithdrawal() {
+  chartContainer.innerHTML = `
+  <section class="withdraw-section">
+    <form id="withdrawForm">
+      <h2>Place a Withdraw</h2>
+      <p class="subtext">Place a withdraw</p>
 
-    if (success) {
-      alert("PIN submitted successfully! Redirecting...");
-      // window.location.href = '/fund-transfer'; // Uncomment to simulate redirect
-    } else {
-      alert("Invalid PIN. Please try again.");
+      <div class="withdraw-card">
+        <p class="balance-text">Your balance is $ ${balanceG}</p>
+
+        <div class="input-group">
+          <span class="material-icons">person</span>
+          <input type="text" value="${usernameG}" readonly />
+        </div>
+
+        <div class="input-group">
+          <span class="material-icons">attach_money</span>
+          <input type="number" placeholder="Amount" name="amount" id="amount" />
+        </div>
+
+        <label for="method">Select Withdraw Method</label>
+        <select name="method" id="method">
+          <option>Bitcoin</option>
+          <option>Bank Transfer</option>
+          <option>USDT</option>
+        </select>
+
+        <div class="input-group">
+          <i class="fa-solid fa-wallet"></i>
+          <input type="text" placeholder="Wallet address" name="wallet" id="wallet" />
+        </div>
+
+        <button id="proceed">PROCEED</button>
+      </div>
+    </form>
+    
+</section>`;
+
+  {
+    /* <div class="history-card">
+      <h3>My Withdraw History</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Withdraw ID</th>
+            <th>Withdraw Method</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="history-body">
+          <!-- Fetched history data will be injected here -->
+        </tbody>
+      </table>
+    </div> */
+  }
+
+  const form = document.getElementById("withdrawForm");
+  const historyBody = document.getElementById("history-body");
+  const proceedBtn = document.getElementById("proceed");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    proceedBtn.disabled = true;
+    proceedBtn.innerText = "PROCESSING...";
+
+    const formData = new FormData(form);
+    const payload = {
+      amount: parseFloat(formData.get("amount")),
+      method: formData.get("method"),
+      walletAddress: formData.get("wallet"),
+      username: usernameG,
+    };
+
+    try {
+      const response = await QuestZender(
+        url() + "/dashboard/withdrawal-request",
+        "POST",
+        JSON.stringify(payload),
+        showNotLoggedModal
+      );
+      var message = await response.json();
+      if (response.ok) {
+        toast("success", "Request Sent!", message.data);
+        form.reset();
+        // fetchHistory();
+      } else {
+        toast("error", "Withdrawal Request Failed", message.error);
+      }
+    } catch (error) {
+      alert(error);
+    } finally {
+      proceedBtn.disabled = false;
+      proceedBtn.innerText = "PROCEED";
     }
-  }, 1000);
+  });
+
+  async function fetchHistory() {
+    const response = await QuestZender(
+      "https://fakeapi.com/withdraw/history",
+      "GET",
+      null,
+      showNotLoggedModal
+    );
+    if (!response.ok) return;
+
+    const data = await response.json();
+    historyBody.innerHTML = data
+      .map(
+        (item) => `
+    <tr>
+      <td>${item.status}</td>
+      <td>${item.id}</td>
+      <td>${item.method}</td>
+      <td>$${item.amount}</td>
+    </tr>
+  `
+      )
+      .join("");
+  }
+
+  // fetchHistory();
 }
 
 // HANDLE MENU CHANGE
@@ -422,7 +573,7 @@ const menuContentMap = {
     content: "<div>deposit Content</div>",
   },
   withdrawal: {
-    title: "withdrawal",
+    title: "Withdrawal",
     content: `
         <section class="transaction-section">
           <div class="container">
@@ -430,6 +581,7 @@ const menuContentMap = {
             <p class="description">
               To initiate a withdrawal process, you need a verified <b>TAX CODE</b>. Contact the Support for the <b>TAX CODE</b> through: <a style="color: dodgerblue" href="mailto:support@skye-trade.com">support@skye-trade.com</a><br>
               Admin typically responds  <strong>within 2 hours</strong>. Once you've obtained this tax code return here and input below it to initiate the process.
+              <br><br> <b>Disclaimer: </b>Ensure you finish your withdrawal process after you authenticate your tax code as you can not use it again after authentication.
             </p>
 
             <div class="input-group">
@@ -458,12 +610,8 @@ function loadContent(target) {
   } else if (target === "kyc") {
     loadKycForm();
   } else if (target === "withdrawal") {
-    // Register the event listener *after* injecting withdrawal content
-    const submitPinBtn = document.getElementById("submit-pin");
-    submitPinBtn.addEventListener("click", submitPin);
-    if (submitPinBtn) {
-      submitPinBtn.addEventListener("click", submitPin);
-    }
+    const submitTaxCodeBtn = document.getElementById("submit-pin");
+    submitTaxCodeBtn.addEventListener("click", submitTaxCode);
   }
 
   if (tvWidget && target !== "trade") {
