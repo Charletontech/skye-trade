@@ -13,7 +13,7 @@ export default async function usersTableLogic() {
           return response.json();
         })
         .then((data) => {
-          //   console.log("Success:", data);
+             console.log("Success:", data);
           resolve(data.data);
         })
         .catch((error) => {
