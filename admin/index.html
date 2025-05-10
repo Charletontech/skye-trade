@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="../assets/arrow.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <link rel="stylesheet" href="../css/swal-toast.css" />
+  </head>
+  <body>
+    <header>
+      <h2>Skye-Trade</h2>
+      <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <a href="#users">Users</a>
+        <a href="#plans">Plans</a>
+        <a href="#withdrawals">Withdrawals</a>
+        <a href="#funding">Wallet Funding</a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="content">
+        <!-- Users Section -->
+        <section id="users">
+          <h2>Manage Users</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Username</th>
+                  <th>Phone</th>
+                  <th>Balance</th>
+                  <th>Gender</th>
+                  <th>Account Type</th>
+                  <th>Country</th>
+                  <th>Currency</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="user-table-body">
+                <!-- Dynamic user rows will go here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <div class="modal" id="edit-user-modal">
+          <div class="modal-content" id="edit-user-modal-content">
+            <div class="modal-header">
+              <b></b>
+              <button id="closeModal" class="ashButton">Exit</button>
+            </div>
+            <form id="edit-user-form">
+              <div class="form-content">
+                <div class="form-group">
+                  <label>Edit Type</label>
+                  <select name="action" id="editTypeInput" required>
+                    <option value="">--Select Edit Type--</option>
+                    <option value="credit">Credit User Balance</option>
+                    <option value="debit">Debit User Balance</option>
+                    <option value="reset">Reset User Balance</option>
+                    <option value="switchAccount">Upgrade User Account</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="ashButton">Edit User</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Plans Section -->
+        <section id="plans">
+          <h2>Manage Trades</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Trade ID</th>
+                  <th>User ID</th>
+                  <th>Amount</th>
+                  <th>Trade Type</th>
+                  <th>Pair</th>
+                  <th>Target</th>
+                  <th>Profit</th>
+                  <th>Status</th>
+                  <th>Date Opened</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="plan-table-body">
+                <!-- Dynamic plan rows will go here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Withdrawal Requests Section -->
+        <section id="withdrawals">
+          <h2>Withdrawal Requests</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Withdrawal ID</th>
+                  <th>Username</th>
+                  <th>User ID</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Wallet Type</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="withdrawal-table-body">
+                <!-- Dynamic withdrawal request rows will go here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Wallet Funding Requests Section -->
+        <section id="funding">
+          <h2>KYC Requests</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kyc ID</th>
+                  <th>User ID</th>
+                  <th>ID Type</th>
+                  <th>ID front</th>
+                  <th>ID Back</th>
+                  <th>Status</th>
+                  <th>Date Requested</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="funding-table-body">
+                <!-- Dynamic wallet funding rows will go here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Tax codes section -->
+        <section id="tax-codes">
+          <h2>Tax Codes</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tax Code</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="tax-code-body">
+                <!-- Dynamic tax code rows will go here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="module" src="../scripts/admin/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

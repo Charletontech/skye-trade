@@ -105,17 +105,122 @@
       </div>
     </div>
 
+    <!-- Profile sidebar -->
+    <div class="sidebar2" id="user-sidebar">
+      <div class="sidebar-header">
+        <div class="background-image">
+          <img src="../assets/bg-2.jpg" alt="Background Image" />
+        </div>
+        <div class="profile-picture">
+          <img src="../assets/2.png" alt="Profile Picture" />
+        </div>
+      </div>
+      <form id="edit-user-data-form" class="user-info">
+        <h2><span class="material-icons">person</span> User Info</h2>
+        <p>
+          <span class="material-icons">account_circle</span> Fullname:
+          <input
+            type="text"
+            id="profileFullName"
+            name="fullName"
+            value="John Doe"
+          />
+        </p>
+        <p>
+          <span class="material-icons">email</span> Email:
+          <input
+            type="text"
+            id="profileEmail"
+            name="email"
+            value=" cryptopay.helpcentre@gmail.com"
+          />
+        </p>
+        <p>
+          <span class="material-icons">phone</span> Phone:
+          <input
+            id="profilePhone"
+            type="text"
+            name="phone"
+            value="09021848029"
+          />
+        </p>
+        <p style="border-bottom: none">
+          <span class="material-icons">flag</span> Nationality:
+          <input
+            id="profileCOR"
+            type="text"
+            name="countryOfResidence"
+            value="Paraguay"
+          />
+        </p>
+        <button>Save Changes</button>
+      </form>
+      <div class="account-info">
+        <h2>
+          <span class="material-icons">account_balance</span> Account Info
+        </h2>
+        <p>
+          <span class="material-icons">wallet</span> Available Balance: $<span
+            id="profileBalance"
+            >0</span
+          >
+        </p>
+        <p>
+          <span class="material-icons">settings</span> Account Status: Active
+        </p>
+        <p>
+          <span class="material-icons">account_box</span> Account Type: Live
+          Trading Account
+        </p>
+        <p>
+          <span class="material-icons">trending_up</span> Account Level: Starter
+        </p>
+      </div>
+
+      <div class="edit-password account-info">
+        <form id="edit-password-form">
+          <h2><span class="material-icons"> security </span> Security</h2>
+          <p>
+            <span class="material-icons">vpn_key</span>
+            <input
+              type="password"
+              placeholder="Old Password"
+              name="oldPassword"
+            />
+          </p>
+          <p>
+            <span class="material-icons"> lock </span>
+            <input
+              type="password"
+              placeholder="New Password"
+              name="newPassword"
+            />
+          </p>
+          <p>
+            <span class="material-icons">lock</span>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              name="confirmPassword"
+            />
+          </p>
+          <button style="margin-top: 1rem">Change Password</button>
+        </form>
+      </div>
+    </div>
+
     <!-- main dashboard -->
+    <div class="logo">
+      <img src="../assets/logo-white.png" alt="logo" />
+    </div>
     <header>
-      <div class="logo">
-        <img src="../assets/logo-white.png" alt="logo" />
-      </div>
-      <div class="user-info">
-        <span>Welcome, <strong>User123</strong></span>
-        <button>Trading Session</button>
-      </div>
       <div class="hamburger" id="hamburger">
         <i class="material-icons">menu</i>
+      </div>
+      <button>Trading Session</button>
+      <div class="user-info">
+        <p><span>Welcome, </span><strong>User123</strong></p>
+        <img class="dp" src="../assets/2.png" alt="profile picture" />
       </div>
     </header>
 
@@ -177,7 +282,7 @@
         <li data-target="kyc"><a href="#">KYC Verification</a></li>
         <li data-target="deposit" id="depositBtn"><a href="#">Deposit</a></li>
         <li data-target="withdrawal"><a href="#">Withdrawal</a></li>
-        <li data-target="settings"><a href="#">Log Out</a></li>
+        <li data-target="logout"><a href="#">Log Out</a></li>
       </ul>
     </div>
     <div id="overlay"></div>

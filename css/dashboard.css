@@ -58,6 +58,121 @@ body {
   text-decoration: none;
 }
 
+/* Profile styles */
+.sidebar2 {
+  position: fixed;
+  top: 0;
+  left: -350px; /* Initially hidden off-screen */
+  width: 350px;
+  height: 100%;
+  background-color: var(--secondary);
+  color: var(--light);
+  z-index: 10000;
+  transition: left 0.3s ease-in-out;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  padding-bottom: 20px; /* Ensure all content is visible when scrolled */
+}
+
+.sidebar2 p {
+  margin-left: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 0 0 15px;
+  width: auto;
+}
+
+.sidebar2 button {
+  margin-left: 1rem;
+  padding: 10px 12px;
+  border: none;
+  background-color: var(--green);
+  color: white;
+  border-radius: 8px;
+}
+
+.sidebar2.open {
+  left: 0;
+}
+
+.sidebar2 input {
+  background-color: transparent;
+  border: none;
+  color: var(--light);
+  outline: none;
+  padding: 5px;
+}
+
+.sidebar-header {
+  position: relative;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.sidebar-header .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sidebar-header .background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-header .profile-picture {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--green);
+  background-color: var(--secondary); /* Ensure no transparency issues */
+}
+
+.sidebar-header .profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info,
+.account-info {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.user-info h2,
+.account-info h2 {
+  color: var(--green);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-info p,
+.account-info p {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .sidebar2 {
+    left: -350px;
+    width: 350px;
+  }
+}
+
 /* Deposit methods modal */
 .modal-overlay {
   position: fixed;
@@ -173,30 +288,39 @@ body {
 }
 
 /* main dashboard */
+/* header */
+
+.logo img {
+  width: 10rem;
+  height: 3rem;
+  margin: 10px auto 18px;
+  display: block;
+}
+
 header {
   display: flex;
+  /* gap: 10px; */
   justify-content: space-between;
   align-items: center;
   background: var(--secondary);
-  padding: 10px 20px;
-}
-
-header .logo {
-  flex: 1;
-}
-
-header img {
-  width: 9rem;
-  height: 3rem;
+  padding: 0px 10px;
+  width: 100%;
 }
 
 header .user-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+  transform: translateY(7px);
 }
 
-header .user-info button {
+header span {
+  display: none;
+}
+
+header button {
   background: var(--highlight);
   color: white;
   padding: 5px 10px;
@@ -205,11 +329,22 @@ header .user-info button {
   cursor: pointer;
 }
 
+/* profile picture */
+.dp {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.dp:hover {
+  cursor: pointer;
+}
+
 .tape {
   width: 100%;
   height: 32px;
   overflow: hidden;
-  /* margin-bottom: 0.7rem; */
 }
 
 /* main container */
@@ -281,6 +416,7 @@ header .user-info button {
   margin-left: 0;
   padding: 14px;
   border-radius: 5px;
+  border: 1px solid white;
 }
 
 .chart-container {
@@ -424,7 +560,6 @@ header .user-info button {
   border-radius: 8px;
   margin-top: 20px;
   display: flex;
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   border: 1px solid white;
   gap: 10px;
   width: 100%;
@@ -438,7 +573,7 @@ header .user-info button {
   color: var(--green);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .main-container {
     flex-direction: column;
   }
@@ -452,7 +587,10 @@ header .user-info button {
 
   header {
     flex-wrap: wrap;
-    padding: 5px 7px;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
   }
 
   header .logo {
@@ -462,7 +600,7 @@ header .user-info button {
   }
 
   header .user-info button {
-    display: none;
+    /* display: none; */
   }
 
   header .user-info span {
@@ -484,19 +622,39 @@ header .user-info button {
   .balance-card {
     flex-direction: column;
     gap: 7px;
-    border: 1px solid white;
+    border: 1px solid var(--green);
   }
 
   .balance-card:hover {
-    border: 1px solid var(--green);
+    border: 1px solid var(--light);
+  }
+
+  .balance-card div {
+    display: inline-flex;
+    justify-content: space-between;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 850px) {
+  .logo {
+    display: none;
+  }
+  .logo img {
+    width: 7rem;
+    height: 2rem;
+    margin: 5px auto 10px;
+    display: block;
+  }
+
+  .tape {
+    height: 35px;
+    display: none;
+  }
+
   .sidebar {
     margin-right: 1rem;
-    height: 80vh;
-    top: 19vh;
+    height: 82vh;
+    top: 14vh;
     left: 1rem;
     border-radius: 8px;
     border: 1px solid white;
@@ -506,8 +664,8 @@ header .user-info button {
     flex-direction: row;
     gap: 5px;
     padding-left: 270px;
-    height: 80vh;
-    margin-top: 1.5rem;
+    height: 84vh;
+    margin-top: 1.7rem;
     padding-top: 0;
     overflow-y: auto;
     overflow-x: hidden;

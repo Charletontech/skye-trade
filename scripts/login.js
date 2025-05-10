@@ -41,7 +41,6 @@ loginForm.addEventListener("submit", async (event) => {
 
     // Send request to login api
     try {
-      console.log(loginData);
       const response = await QuestZender(
         url() + "/auth/login",
         "POST",

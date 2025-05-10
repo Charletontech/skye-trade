@@ -1,6 +1,7 @@
+import { changePassword, editUserData } from "./dashboard/editProfile.js";
 import { QuestZender, toast, url } from "./utils.js";
 
-function showNotLoggedModal() {
+export function showNotLoggedModal() {
   const notLoggedDisplay = document.querySelector(".notLoggedCont");
   notLoggedDisplay.classList.add("showNotLogged");
 }
@@ -29,6 +30,31 @@ document.addEventListener("click", function (e) {
   }
 });
 
+// TOGGLE PROFILE MODAL
+const toggleButton = document.querySelector(".dp");
+const profileSidebar = document.getElementById("user-sidebar");
+let isSidebarOpen = false;
+
+function toggleProfileSidebar(event) {
+  event.stopPropagation(); // Prevent the click on the button from immediately triggering the document click event
+  profileSidebar.classList.toggle("open");
+  isSidebarOpen = !isSidebarOpen;
+}
+
+toggleButton.addEventListener("click", toggleProfileSidebar);
+
+document.addEventListener("click", function (event) {
+  if (
+    isSidebarOpen &&
+    !profileSidebar.contains(event.target) &&
+    event.target !== toggleButton
+  ) {
+    profileSidebar.classList.remove("open");
+    isSidebarOpen = false;
+  }
+});
+
+// LOGIC TO FETCH USER DATA AND UPDATE UI
 var usernameG;
 var balanceG;
 QuestZender(url() + "/dashboard/me", "GET", null, showNotLoggedModal)
@@ -41,7 +67,17 @@ QuestZender(url() + "/dashboard/me", "GET", null, showNotLoggedModal)
   })
   .then((data) => {
     if (!data) return;
-    const { username, balance, btc, currency, accountType } = data.data;
+    const {
+      fullName,
+      phone,
+      email,
+      username,
+      balance,
+      btc,
+      currency,
+      accountType,
+      country,
+    } = data.data;
     usernameG = username;
     balanceG = balance;
 
@@ -55,6 +91,13 @@ QuestZender(url() + "/dashboard/me", "GET", null, showNotLoggedModal)
     const trimmedBtc = Math.floor(btc * 1e9) / 1e9;
     btcDis.textContent = `${trimmedBtc} BTC`;
     accountTypeDis.textContent = accountType;
+
+    // update profile UI data
+    document.getElementById("profileFullName").value = fullName;
+    document.getElementById("profileEmail").value = email;
+    document.getElementById("profilePhone").value = phone;
+    document.getElementById("profileCOR").value = country;
+    document.getElementById("profileBalance").innerText = balanceG;
   })
   .catch((error) => {
     console.error(error);
@@ -181,7 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
         progressPercentage = 0;
       } else {
         progressPercentage = Math.round(
-          activeTradeData.profit * activeTradeData.target * 100
+          (activeTradeData.profit / activeTradeData.target) * 100
         );
       }
 
@@ -214,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }</div>
     <div><strong>profit:</strong> $${activeTradeData.profit}</div>
     </div>
-    <div><strong>Target:</strong> <br> ${takeProfit}</div>
+    <div><strong>Target:</strong> <br> $${takeProfit}</div>
     </div>
     </div>
     `;
@@ -261,7 +304,7 @@ document.addEventListener("DOMContentLoaded", function () {
             kycContent = `
             <div class="kyc-form-container">
               <h3 style="color: red">KYC Verification Declined</h3>
-              <p>Your KYC verification has been declined. Please another document for re-apply.</p>
+              <p>Your KYC verification has been declined. Please upload another document and re-apply. Ensure it meets our verification requirements this time.</p>
               <form id="kyc-form">
                 <div class="kyc-form-group">
                   <label for="idType">ID Type</label>
@@ -307,6 +350,13 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Error fetching KYC status");
     }
   }
+
+  // LOGIC TO HANDLE EDIT USER DATA FORM
+  const editUserDataForm = document.getElementById("edit-user-data-form");
+  editUserDataForm.addEventListener("submit", editUserData);
+
+  // LOGIC TO HANDLE CHANGE PASSWORD
+  changePassword();
 });
 
 function loadKycForm() {
@@ -568,10 +618,10 @@ const menuContentMap = {
     title: "KYC Verification",
     content: "",
   },
-  deposit: {
-    title: "Deposit",
-    content: "<div>deposit Content</div>",
-  },
+  // deposit: {
+  //   title: "Deposit",
+  //   content: "<div>deposit Content</div>",
+  // },
   withdrawal: {
     title: "Withdrawal",
     content: `
@@ -594,10 +644,10 @@ const menuContentMap = {
         </section>
       `,
   },
-  // logout: {
-  //   title: "logout",
-  //   content: "<div>logout Content</div>",
-  // },
+  logout: {
+    title: "logout",
+    content: "<div>logout Content</div>",
+  },
 };
 
 function loadContent(target) {
@@ -612,6 +662,9 @@ function loadContent(target) {
   } else if (target === "withdrawal") {
     const submitTaxCodeBtn = document.getElementById("submit-pin");
     submitTaxCodeBtn.addEventListener("click", submitTaxCode);
+  } else if (target === "logout") {
+    toast("warning", "Logging Out...");
+    localStorage.removeItem("auth");
   }
 
   if (tvWidget && target !== "trade") {
