@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       // Actually send request to API
-      const response = await fetch(url() + "/api/v1/auth/register", {
+      const response = await fetch(url() + "/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

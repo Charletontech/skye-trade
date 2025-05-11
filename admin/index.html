@@ -21,10 +21,12 @@
     <div class="container">
       <!-- Sidebar -->
       <div class="sidebar" id="sidebar">
+        <h2>MENU</h2>
         <a href="#users">Users</a>
-        <a href="#plans">Plans</a>
+        <a href="#manage-trades">Manage Trades</a>
+        <a href="#kyc">KYC</a>
         <a href="#withdrawals">Withdrawals</a>
-        <a href="#funding">Wallet Funding</a>
+        <a href="#tax-codes">Tax Codes</a>
       </div>
 
       <!-- Main Content -->
@@ -54,33 +56,36 @@
               </tbody>
             </table>
           </div>
-        </section>
-        <div class="modal" id="edit-user-modal">
-          <div class="modal-content" id="edit-user-modal-content">
-            <div class="modal-header">
-              <b></b>
-              <button id="closeModal" class="ashButton">Exit</button>
-            </div>
-            <form id="edit-user-form">
-              <div class="form-content">
-                <div class="form-group">
-                  <label>Edit Type</label>
-                  <select name="action" id="editTypeInput" required>
-                    <option value="">--Select Edit Type--</option>
-                    <option value="credit">Credit User Balance</option>
-                    <option value="debit">Debit User Balance</option>
-                    <option value="reset">Reset User Balance</option>
-                    <option value="switchAccount">Upgrade User Account</option>
-                  </select>
-                </div>
-              </div>
-              <button type="submit" class="ashButton">Edit User</button>
-            </form>
-          </div>
-        </div>
 
-        <!-- Plans Section -->
-        <section id="plans">
+          <div class="modal" id="edit-user-modal">
+            <div class="modal-content" id="edit-user-modal-content">
+              <div class="modal-header">
+                <b></b>
+                <button id="closeModal" class="ashButton">Exit</button>
+              </div>
+              <form id="edit-user-form">
+                <div class="form-content">
+                  <div class="form-group">
+                    <label>Edit Type</label>
+                    <select name="action" id="editTypeInput" required>
+                      <option value="">--Select Edit Type--</option>
+                      <option value="credit">Credit User Balance</option>
+                      <option value="debit">Debit User Balance</option>
+                      <option value="reset">Reset User Balance</option>
+                      <option value="switchAccount">
+                        Upgrade User Account
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" class="ashButton">Edit User</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Manage-trades Section -->
+        <section id="manage-trades">
           <h2>Manage Trades</h2>
           <div class="table-container">
             <table>
@@ -98,39 +103,55 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody id="plan-table-body">
+              <tbody id="manage-trades-table-body">
                 <!-- Dynamic plan rows will go here -->
               </tbody>
             </table>
           </div>
-        </section>
 
-        <!-- Withdrawal Requests Section -->
-        <section id="withdrawals">
-          <h2>Withdrawal Requests</h2>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Withdrawal ID</th>
-                  <th>Username</th>
-                  <th>User ID</th>
-                  <th>Amount</th>
-                  <th>Method</th>
-                  <th>Wallet Type</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="withdrawal-table-body">
-                <!-- Dynamic withdrawal request rows will go here -->
-              </tbody>
-            </table>
+          <div class="modal" id="manage-trades-modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <b class="tradeID"></b>
+                <button id="closeTradesModal" class="ashButton">Exit</button>
+              </div>
+              <form id="edit-trade-form">
+                <div class="form-group">
+                  <label
+                    >Set target
+                    <span
+                      style="
+                        color: #808080;
+                        font-size: 0.8em;
+                        font-style: italic;
+                      "
+                      >(optional)</span
+                    ></label
+                  >
+                  <input type="number" name="target" />
+                </div>
+                <div class="form-group">
+                  <label
+                    >Set profit
+                    <span
+                      style="
+                        color: #808080;
+                        font-size: 0.8em;
+                        font-style: italic;
+                      "
+                      >(optional)</span
+                    ></label
+                  >
+                  <input type="number" name="profit" />
+                </div>
+                <button type="submit" class="button">Edit Trade</button>
+              </form>
+            </div>
           </div>
         </section>
 
-        <!-- Wallet Funding Requests Section -->
-        <section id="funding">
+        <!-- Wallet kyc Requests Section -->
+        <section id="kyc">
           <h2>KYC Requests</h2>
           <div class="table-container">
             <table>
@@ -146,26 +167,100 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody id="funding-table-body">
-                <!-- Dynamic wallet funding rows will go here -->
+              <tbody id="kyc-table-body">
+                <!-- Dynamic wallet kyc rows will go here -->
               </tbody>
             </table>
+          </div>
+
+          <!-- kyc modal -->
+          <div class="modal" id="kycModal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <b class="kycID"></b>
+                <button id="closeKycModal" class="ashButton">Exit</button>
+              </div>
+              <form id="kyc-form">
+                <div class="form-group">
+                  <label>Change Status</label>
+                  <select name="status">
+                    <option>approved</option>
+                    <option>pending</option>
+                    <option>declined</option>
+                  </select>
+                </div>
+                <button type="submit" class="button">Updated Status</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Withdrawal Requests Section -->
+        <section id="withdrawals">
+          <h2>Withdrawal Requests</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Withdrawal ID</th>
+                  <th>Username</th>
+                  <th>User ID</th>
+                  <th>Amount</th>
+                  <th>Method</th>
+                  <th>Wallet Address</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="withdrawal-table-body">
+                <!-- Dynamic withdrawal request rows will go here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- withdrawal modal -->
+          <div class="modal" id="withdrawalModal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <b class="withdrawalID"></b>
+                <button id="closeWithdrawalModal" class="ashButton">
+                  Exit
+                </button>
+              </div>
+              <form id="withdrawal-form">
+                <div class="form-group">
+                  <label>Change Status</label>
+                  <select name="status">
+                    <option value="approved">
+                      approved (user will be debited)
+                    </option>
+                    <option>pending</option>
+                    <option>declined</option>
+                  </select>
+                </div>
+                <button type="submit" class="button">Updated Status</button>
+              </form>
+            </div>
           </div>
         </section>
 
         <!-- Tax codes section -->
         <section id="tax-codes">
-          <h2>Tax Codes</h2>
+          <div class="tax-code-header">
+            <h2>Tax Codes</h2>
+            <button class="taxCodeBtn">Generate New TaxCode</button>
+          </div>
           <div class="table-container">
             <table>
               <thead>
                 <tr>
+                  <th>S/N</th>
                   <th>Tax Code</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <!-- <th>Action</th> -->
                 </tr>
               </thead>
-              <tbody id="tax-code-body">
+              <tbody id="taxCodes-table-body">
                 <!-- Dynamic tax code rows will go here -->
               </tbody>
             </table>

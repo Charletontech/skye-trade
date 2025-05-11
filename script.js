@@ -1,3 +1,8 @@
+// LOGIC TO TOGGLE MENU
+function toggleMenuBtn() {
+  document.querySelector(".nav-links").classList.toggle("show-nav-links");
+}
+
 // LOGIC FOR CAROUSEL
 document.addEventListener("DOMContentLoaded", function () {
   const textContentElement = document.querySelector(".text-content");

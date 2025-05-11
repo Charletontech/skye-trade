@@ -1,12 +1,17 @@
 import usersTableLogic from "./usersTable.js";
-import { toggleModal } from "./admin-utils.js";
+import manageTrades from "./manageTrades.js";
+import kycTable from "./kycTable.js";
+import withdrawalTable from "./withdrawalTable.js";
+import taxCodesTable from "./taxCodes.js";
 window.addEventListener("DOMContentLoaded", async () => {
   // execute users table logic && also get user data
   const userData = await usersTableLogic();
-
-  //   general cope functions
-  const closeModal = document.getElementById("closeModal");
-  closeModal.addEventListener("click", (e) => {
-    toggleModal();
-  });
+  // execute manage trades logic
+  manageTrades();
+  // execute logic for KYC table
+  kycTable();
+  // execute logic for withdrawal table
+  withdrawalTable();
+  // execute logic for tax codes table
+  taxCodesTable();
 });

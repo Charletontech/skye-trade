@@ -54,11 +54,13 @@
           <img src="assets/logo-white.png" alt="" />
         </div>
         <ul class="nav-links" id="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Tokens</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#markets-section">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonial-card-section">Testimonials</a></li>
+          <li><a href="#platforms-section">Our Platforms</a></li>
+          <li><a href="#footer-contact">Contact Us</a></li>
         </ul>
         <button class="join-btn">
           <a
@@ -67,13 +69,13 @@
             >Login</a
           >
         </button>
-        <div class="menu-toggle" id="menu-toggle">
+        <div class="menu-toggle" id="menu-toggle" onclick="toggleMenuBtn()">
           <span class="material-icons" id="menu-icon">menu</span>
         </div>
       </nav>
 
       <!-- Hero Content -->
-      <div class="hero-content fade-in">
+      <div id="home" class="hero-content fade-in">
         <div class="text-content">
           <h1>
             Invest Your Money<br />
@@ -175,8 +177,43 @@
       <!-- TradingView Widget END -->
     </div>
 
+    <!-- second Platforms section -->
+    <section class="trading-platforms-section">
+      <div class="container">
+        <div class="content">
+          <div class="image-container">
+            <img src="assets/trading-img.png" alt="Trading Devices" />
+          </div>
+          <div class="text-container">
+            <h2>
+              <span>Advanced</span>
+              <strong>Trading<br />Platforms & Financial Technology</strong>
+            </h2>
+            <ul>
+              <li>
+                <i class="fa fa-check-circle"></i>
+                <a href="#">MetaTrader 4 (MT4)</a> &
+                <a href="#">MetaTrader 5 (MT5)</a>, <a href="#">TradingView</a>,
+                <a href="#">cTrader</a> and WebTrader & mobile apps for iPhone
+                and Android devices
+              </li>
+              <li>
+                <i class="fa fa-check-circle"></i> Advanced client portal to
+                track your trading in real-time
+              </li>
+              <li>
+                <i class="fa fa-check-circle"></i> Superior
+                <a href="#">Virtual Private Servers</a> (VPS) solutions for
+                Expert Advisors (EAs), scalping and auto-trading
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Best Trading Conditions Section -->
-    <section class="trading-conditions-section">
+    <section id="trading-conditions-section" class="trading-conditions-section">
       <div class="container">
         <h2>
           Trade With The <span class="highlight">Best Trading</span> Conditions
@@ -205,7 +242,7 @@
     </section>
 
     <!-- About Us Section -->
-    <section class="about">
+    <section id="about" class="about">
       <div class="about-image-container">
         <img src="assets/computer.png" alt="About Us" class="about-image" />
         <div class="about-badge">
@@ -355,7 +392,7 @@
       </div>
 
       <!-- Markets Section -->
-      <section class="markets-section">
+      <section id="markets-section" class="markets-section">
         <div class="container">
           <h2>
             Trade the world’s most
@@ -503,7 +540,7 @@
     </div>
 
     <!-- PRicing section -->
-    <section class="pricing">
+    <section id="pricing" class="pricing">
       <!-- Dark Overlay -->
       <div class="pricing-overlay"></div>
 
@@ -715,7 +752,7 @@
     </section>
 
     <!-- Testimonials section -->
-    <section class="testimonial-card-section">
+    <section id="testimonial-card-section" class="testimonial-card-section">
       <div class="testimonial-illustration">
         <img src="assets/illustrate.png" alt="" />
       </div>
@@ -744,41 +781,6 @@
               <p class="author-name" id="author-name">Micheal Reeves</p>
               <p class="author-username" id="author-username">@michealreeves</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- second Platforms section -->
-    <section class="trading-platforms-section">
-      <div class="container">
-        <div class="content">
-          <div class="image-container">
-            <img src="assets/trading-img.png" alt="Trading Devices" />
-          </div>
-          <div class="text-container">
-            <h2>
-              <span>Advanced</span>
-              <strong>Trading<br />Platforms & Financial Technology</strong>
-            </h2>
-            <ul>
-              <li>
-                <i class="fa fa-check-circle"></i>
-                <a href="#">MetaTrader 4 (MT4)</a> &
-                <a href="#">MetaTrader 5 (MT5)</a>, <a href="#">TradingView</a>,
-                <a href="#">cTrader</a> and WebTrader & mobile apps for iPhone
-                and Android devices
-              </li>
-              <li>
-                <i class="fa fa-check-circle"></i> Advanced client portal to
-                track your trading in real-time
-              </li>
-              <li>
-                <i class="fa fa-check-circle"></i> Superior
-                <a href="#">Virtual Private Servers</a> (VPS) solutions for
-                Expert Advisors (EAs), scalping and auto-trading
-              </li>
-            </ul>
           </div>
         </div>
       </div>
@@ -936,7 +938,7 @@
     </section>
 
     <!-- Platforms Section -->
-    <section class="platforms-section">
+    <section id="platforms-section" class="platforms-section">
       <div class="container">
         <h2>Discover Multiple <span class="highlight">Platforms</span></h2>
 
@@ -1138,7 +1140,7 @@
           </nav>
         </div>
 
-        <div class="footer-contact">
+        <div id="footer-contact" class="footer-contact">
           <p>SkyeTrade LLC</p>
           <p><strong>United States of America:</strong></p>
           <p>Miami, FL</p>
@@ -1205,5 +1207,52 @@
     </footer>
 
     <script src="script.js"></script>
+    <!--Start of Tawk.to Script-->
+    <!-- <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/68210c815fa91f190c49af0b/1ir0hhofu";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script> -->
+    <!--End of Tawk.to Script-->
+    <script>
+      (function () {
+        if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+          window.chatbase = (...arguments) => {
+            if (!window.chatbase.q) {
+              window.chatbase.q = [];
+            }
+            window.chatbase.q.push(arguments);
+          };
+          window.chatbase = new Proxy(window.chatbase, {
+            get(target, prop) {
+              if (prop === "q") {
+                return target.q;
+              }
+              return (...args) => target(prop, ...args);
+            },
+          });
+        }
+        const onLoad = function () {
+          const script = document.createElement("script");
+          script.src = "https://www.chatbase.co/embed.min.js";
+          script.id = "NYluvz8BJtpqHpSXkPfWM";
+          script.domain = "www.chatbase.co";
+          document.body.appendChild(script);
+        };
+        if (document.readyState === "complete") {
+          onLoad();
+        } else {
+          window.addEventListener("load", onLoad);
+        }
+      })();
+    </script>
   </body>
 </html>

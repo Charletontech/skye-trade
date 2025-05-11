@@ -129,6 +129,8 @@ export default async function usersTableLogic() {
     toast("error", "Error", message.error);
   });
 
-  //   return user data so it can be used in other files
-  return await fetchUsersData();
+  const closeModal = document.getElementById("closeModal");
+  closeModal.addEventListener("click", (e) => {
+    toggleModal();
+  });
 }

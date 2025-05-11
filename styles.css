@@ -301,15 +301,50 @@ html {
 }
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    /* display: none; */
     flex-direction: column;
     background: rgba(0, 0, 0, 0.9);
     position: absolute;
-    top: 60px;
+
+    width: 100%;
+    top: 5px;
+    left: 0;
+    padding: 30px;
+    height: 100px;
+    overflow: hidden;
+    opacity: 0;
+    z-index: -5;
+    transition: all 0.9s;
+    border-bottom: 1px solid var(--green);
+
+    /* top: 60px;
     right: 1rem;
     padding: 1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.5rem; */
   }
+
+  .show-nav-links {
+    height: 380px;
+    overflow: visible;
+    opacity: 1;
+    z-index: 5;
+  }
+
+  .nav-links li {
+    margin-bottom: 1rem;
+    transition: all 0.4s;
+    transform: translateX(0);
+  }
+
+  .nav-links li:last-child {
+    margin-bottom: 0;
+  }
+
+  .nav-links li:hover {
+    transform: translateX(5px);
+    transition: all 1s;
+  }
+
   .nav-links.open {
     display: flex;
   }
