@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Investors Profit Zone</title>
+    <link rel="stylesheet" href="../css/about-us.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container header-container">
+        <div class="logo">
+          <img src="../assets/logo-white.png" alt="Investors Profit Zone" />
+        </div>
+        <nav>
+          <button class="hamburger-menu">☰</button>
+          <ul class="nav-links">
+            <li>
+              <button class="login-btn" onclick="window.location = '/login'">
+                login
+              </button>
+            </li>
+            <li>
+              <button
+                class="get-started-btn"
+                onclick="window.location = '/signup'"
+              >
+                Get Started
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="about-us" class="about-us-section">
+        <div class="container about-us-container">
+          <h2>About Us</h2>
+          <div class="breadcrumb">
+            <span>SKYETRADE LLC</span> <span class="arrow">&gt;</span>
+            <span>ABOUT US</span>
+          </div>
+          <div class="who-we-are">
+            <h3>Who we are</h3>
+            <p>
+              online trade is a solution for creating an investment management
+              platform. It is suited for hedge or mutual fund managers and also
+              Forex, stocks, bonds and cryptocurrency traders who are looking at
+              runing pool trading system. SkyeTrade Platforms simplifies the
+              investment, monitoring and management process. With a secure and
+              compelling mobile-first design, together with a default front-end
+              design, it takes few minutes to setup your own investment
+              management or pool trading platform.
+            </p>
+            <button
+              class="invest-now-btn"
+              onclick="window.location = '/signup'"
+            >
+              Invest now >
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-to-start" class="how-to-start-section">
+        <div class="container how-to-start-container">
+          <div class="get-started-heading">
+            <span>Get Started</span>
+            <h2>How to get started ?</h2>
+          </div>
+          <div class="steps-container">
+            <div class="step">
+              <div class="icon-container">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="user-icon">
+                  <path
+                    d="M12 4a4 4 0 100 8 4 4 0 000-8zm0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"
+                  />
+                </svg>
+              </div>
+              <h3>Create an Account</h3>
+              <p>
+                Create an account with us using your preffered email/username
+              </p>
+            </div>
+            <div class="step">
+              <div class="icon-container">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="deposit-icon"
+                >
+                  <path
+                    d="M2 4h20v16H2V4zm2 2v12h16V6H4zm10 8v2h-4v-2H6v-2h4v-2h-4V8h4v2h4v-2h4v2h-4v2h4v2h-4v-2H6v2h8z"
+                  />
+                </svg>
+              </div>
+              <h3>Make a Deposit</h3>
+              <p>Make A deposit with any of your preffered currency</p>
+            </div>
+            <div class="step">
+              <div class="icon-container">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="trade-icon">
+                  <path
+                    d="M6 18l8.5-8.5 3 3L22 8v10h-4l-4.5-4.5-3 3L2 6v12h4z"
+                  />
+                </svg>
+              </div>
+              <h3>Start Trading/Investing</h3>
+              <p>Start trading with Indices commodities e.tc</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="trade-invest" class="trade-invest-section">
+        <div class="container trade-invest-container">
+          <h2>The Better Way to Trade & Invest</h2>
+          <p>
+            Online Trade helps over 2 million customers achieve their financial
+            goals by helping them trade and invest with ease
+          </p>
+          <button
+            class="create-account-btn"
+            onclick="window.location = '/signup'"
+          >
+            Create Free Account
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+    <script>
+      // Basic JavaScript for hamburger menu (optional for now)
+      document
+        .querySelector(".hamburger-menu")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-links").classList.toggle("show");
+        });
+    </script>
+  </body>
+</html>

@@ -22,6 +22,8 @@
 body {
   color: white;
   background: var(--bg);
+  margin: 0;
+  padding: 0;
 }
 html {
   scroll-behavior: smooth;
@@ -138,7 +140,6 @@ html {
   font-size: 1em;
 }
 .join-btn:hover {
-  /* background: #0f766e; */
   color: var(--green);
   background: var(--dark);
 }
@@ -425,6 +426,12 @@ html {
   margin-top: 70px;
 }
 
+/* WATCHLIST SECTION */
+.watch-list-section {
+  width: 100vw;
+  height: auto;
+}
+
 /* PARTNERS SECTION */
 .partners-cont {
   text-align: center;
@@ -457,6 +464,7 @@ html {
   flex: 1;
   position: relative;
   max-width: 50%;
+  overflow-x: hidden;
 }
 
 .about-image {
