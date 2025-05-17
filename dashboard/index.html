@@ -26,6 +26,21 @@
     <link rel="stylesheet" href="../css/dashboard.css" />
   </head>
   <body>
+    <!-- google translator -->
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en" },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+
     <!-- Not logged in display -->
     <div class="notLoggedCont">
       <h2>Not Logged In!</h2>
@@ -112,7 +127,7 @@
           <img src="../assets/bg-2.jpg" alt="Background Image" />
         </div>
         <div class="profile-picture">
-          <img src="../assets/2.png" alt="Profile Picture" />
+          <img src="../assets/avatar.jpg" alt="Profile Picture" />
         </div>
       </div>
       <form id="edit-user-data-form" class="user-info">
@@ -278,10 +293,16 @@
     <div class="sidebar" id="sidebar">
       <ul>
         <li data-target="home"><a href="/">Home</a></li>
-        <li data-target="trade"><a href="#">Trade</a></li>
-        <li data-target="kyc"><a href="#">KYC Verification</a></li>
-        <li data-target="deposit" id="depositBtn"><a href="#">Deposit</a></li>
-        <li data-target="withdrawal"><a href="#">Withdrawal</a></li>
+        <li data-target="trade"><a href="#tradingview-widget">Trade</a></li>
+        <li data-target="kyc">
+          <a href="#tradingview-widget">KYC Verification</a>
+        </li>
+        <li data-target="deposit" id="depositBtn">
+          <a href="#tradingview-widget">Deposit</a>
+        </li>
+        <li data-target="withdrawal">
+          <a href="#tradingview-widget">Withdrawal</a>
+        </li>
         <li data-target="logout"><a href="#">Log Out</a></li>
       </ul>
     </div>
@@ -345,12 +366,65 @@
 
       <div class="right-panel">
         <h2>Trade</h2>
-        <div class="chart-container" id="tradingview-widget"></div>
+        <div class="chart-container" id="tradingview-widget">
+          <!-- TradingView Widget BEGIN -->
+          <div
+            class="tradingview-widget-container"
+            style="height: 100%; width: 100%"
+          >
+            <div
+              class="tradingview-widget-container__widget"
+              style="height: calc(100% - 32px); width: 100%"
+            ></div>
+            <div class="tradingview-widget-copyright">
+              <a
+                href="https://www.tradingview.com/"
+                rel="noopener nofollow"
+                target="_blank"
+                ><span class="blue-text"
+                  >Track all markets on TradingView</span
+                ></a
+              >
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+              async
+            >
+                {
+                "autosize": true,
+                "symbol": "BINANCE:BTCUSDT",
+                "interval": "D",
+                "timezone": "Etc/UTC",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "allow_symbol_change": true,
+                "support_host": "https://www.tradingview.com"
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+        </div>
       </div>
     </div>
 
     <script type="module" src="../scripts/dashboard.js"></script>
     <script src="https://s3.tradingview.com/tv.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/68210c815fa91f190c49af0b/1ir0hhofu";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
   </body>
 </html>

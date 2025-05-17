@@ -72,7 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
       successMessage.textContent = "🎉 Registration Successful!";
 
       // Reset form
-      // form.reset();
+      form.reset();
+      window.location = "/login";
     } catch (error) {
       // If failed
       console.log(error);

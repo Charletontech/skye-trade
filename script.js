@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         'Invest Your Money<br>With <span class="highlight">Higher Return</span>',
       paragraph:
         "Anyone can invest money into different currencies to increase their earnings through online trading.",
-      imageSrc: "./assets/arrow.png",
+      imageSrc: "./assets/arrow2.png",
     },
     {
       heading:
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         'Maximize Your Returns<br>Discover Smart <span class="highlight">Trading</span>',
       paragraph:
         "Learn how our platform can help you amplify your earnings through intelligent online trading tools.",
-      imageSrc: "./assets/arrow.png",
+      imageSrc: "./assets/arrow2.png",
     },
     {
       heading:
@@ -182,12 +182,19 @@ setInterval(changeTestimonial, 5000);
 // LOGIC FOR ALERT POP UP
 const alerts = [
   "Dirk from AUSTRALIA has just earned $19,046",
-  "Angela from NIGERIA has just earned $12,320",
+  "Catalina from MEXICO has just earned $12,320",
   "Carlos from BRAZIL has just earned $8,750",
   "Leila from UAE has just earned $15,100",
   "John from UK has just earned $10,200",
-  "Fatima from EGYPT has just earned $11,987",
+  "Micheal from CANADA has just earned $13,240",
+  "Louis from LUXEMBOURG has just earned $9,040",
+  "Ahmed from EGYPT has just earned $11,987",
+  "Muller from NETHERLANDS has just earned $11,987",
   "Ivan from RUSSIA has just earned $13,300",
+  "Sofia from SWEDEN has just earned $14,500",
+  "Liam from USA has just earned $20,000",
+  "Emma from ITALY has just earned $18,500",
+  "Olivia from USA has just earned $17,000",
 ];
 
 function showAlert() {
