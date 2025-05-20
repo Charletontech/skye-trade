@@ -318,11 +318,6 @@ html {
     z-index: -5;
     transition: all 0.9s;
     border-bottom: 1px solid var(--green);
-
-    /* top: 60px;
-    right: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem; */
   }
 
   .show-nav-links {
