@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const textContentElement = document.querySelector(".text-content");
   const headingElement = textContentElement.querySelector("h1");
   const paragraphElement = textContentElement.querySelector("p");
-  const heroImageElement = document.getElementById("hero-image");
+  const heroImageElement = document.getElementById("heroImage");
   const heroImageContentElement = document.getElementById("hero-image-content");
   // heroImageElement.src = "./assets/arrow.png"; // Set initial image source
   const writeUpsAndImages = [
@@ -181,13 +181,13 @@ setInterval(changeTestimonial, 5000);
 
 // LOGIC FOR ALERT POP UP
 const alerts = [
-  "Dirk from AUSTRALIA has just earned $19,046",
   "Catalina from MEXICO has just earned $12,320",
   "Carlos from BRAZIL has just earned $8,750",
   "Leila from UAE has just earned $15,100",
   "John from UK has just earned $10,200",
   "Micheal from CANADA has just earned $13,240",
   "Louis from LUXEMBOURG has just earned $9,040",
+  "Dirk from AUSTRALIA has just earned $19,046",
   "Ahmed from EGYPT has just earned $11,987",
   "Muller from NETHERLANDS has just earned $11,987",
   "Ivan from RUSSIA has just earned $13,300",

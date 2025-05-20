@@ -206,11 +206,11 @@ html {
 .image-content img {
   transform: translateX(100%);
   opacity: 0;
-  transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Add transition */
+  transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
 .image-content img.slide-in {
-  transform: translateX(0); /* Slide into view */
+  transform: translateX(0);
   opacity: 1;
 }
 
@@ -259,10 +259,10 @@ html {
   background: #444;
   transform: translateY(-2px);
 }
-.image-content img {
-  max-width: 100%;
+
+#heroImage {
+  width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 @keyframes zoom {
   0%,
@@ -294,7 +294,8 @@ html {
     max-width: 50%;
   }
   .image-content {
-    max-width: 50%;
+    width: 50%;
+    height: 70%;
   }
   .image-content img {
     margin-top: 0;
@@ -377,13 +378,9 @@ html {
     gap: 2rem;
   }
 
-  .image-content img {
-    height: 115%;
-  }
-
-  #hero-image {
-    width: 100% !important;
-    height: 200px !important;
+  .image-content {
+    width: 100%;
+    height: 18rem;
   }
 }
 
@@ -424,11 +421,6 @@ html {
   color: white;
   cursor: pointer;
 }
-
-/* .hero-image-content img {
-  width: 500px;
-  margin-top: 70px;
-} */
 
 /* WATCHLIST SECTION */
 .watch-list-section {
