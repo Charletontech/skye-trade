@@ -92,3 +92,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+// Fetch countries from the JSON file
+fetch("../features/countries.json")
+  .then((response) => response.json())
+  .then((data) => {
+    const countries = data.countries; // Get the countries array
+    const select = document.querySelector('select[name="country"]');
+    countries.forEach((country) => {
+      const option = document.createElement("option");
+      option.value = country;
+      option.textContent = country;
+      select.appendChild(option);
+    });
+  })
+  .catch((error) => console.error("Error loading countries:", error));
