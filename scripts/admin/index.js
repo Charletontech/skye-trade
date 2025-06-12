@@ -3,6 +3,7 @@ import manageTrades from "./manageTrades.js";
 import kycTable from "./kycTable.js";
 import withdrawalTable from "./withdrawalTable.js";
 import taxCodesTable from "./taxCodes.js";
+import composeMail from "./composeMail.js";
 window.addEventListener("DOMContentLoaded", async () => {
   // execute users table logic && also get user data
   const userData = await usersTableLogic();
@@ -14,4 +15,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   withdrawalTable();
   // execute logic for tax codes table
   taxCodesTable();
+  // execute logic for composeMail
+  composeMail();
 });

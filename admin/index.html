@@ -27,6 +27,7 @@
         <a href="#kyc">KYC</a>
         <a href="#withdrawals">Withdrawals</a>
         <a href="#tax-codes">Tax Codes</a>
+        <a href="#mail">Compose Mail</a>
       </div>
 
       <!-- Main Content -->
@@ -265,6 +266,45 @@
               </tbody>
             </table>
           </div>
+        </section>
+
+        <!-- send mail section -->
+        <section id="mail" class="email-composer">
+          <h2>Compose Email</h2>
+          <form id="emailForm">
+            <label for="heading">Heading:</label>
+            <input
+              type="text"
+              id="heading"
+              name="heading"
+              placeholder="Enter heading"
+            />
+
+            <label for="greeting">Greeting:</label>
+            <input
+              type="text"
+              id="greeting"
+              name="greeting"
+              placeholder="Dear Phoebe , Hi Johnson, etc."
+            />
+
+            <label for="recipient">Recipient Email:</label>
+            <input
+              type="email"
+              id="recipient"
+              name="recipient"
+              placeholder="example@email.com"
+            />
+
+            <label for="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Write your email message here..."
+            ></textarea>
+
+            <button type="submit" id="sendBtn">Send Email</button>
+          </form>
         </section>
       </div>
     </div>
