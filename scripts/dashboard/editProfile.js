@@ -52,12 +52,10 @@ export function changePassword() {
     );
     const message = await response.json();
     if (response.ok) {
-      // toast("success", "Password Updated!", message.data)
-      alert(message.data);
+      toast("success", "Password Updated!", message.data);
       return;
     }
 
-    // toast('error', "Oops!", `We experienced an error ${message.error}`)
-    alert(message.error);
+    toast("error", "Oops!", `We experienced an error ${message.error}`);
   });
 }

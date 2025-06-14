@@ -47,10 +47,10 @@ loginForm.addEventListener("submit", async (event) => {
       // redirect user to change password page
       toast(
         "success",
-        "OTP sent!",
-        "We found your account. We have sent an OTP to your email..."
+        "Recovery Token sent!",
+        "We found your account. We have sent a Recovery Token to your email..."
       );
-      window.location = "/change-password";
+      window.location = `/reset-password/index.html?identifier=${loginIdentifierInput.value}`;
     } catch (error) {
       console.log(error);
       toast("error", "Error", error);

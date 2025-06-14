@@ -15,26 +15,42 @@
           <img src="../assets/logo-white.png" alt="Logo" class="logo" />
         </div>
 
-        <h2>Forgot Password</h2>
+        <h2>Reset Password</h2>
 
         <form id="loginForm">
           <div class="form-group">
-            <label for="loginIdentifier">Email or Username</label>
-            <input type="text" id="loginIdentifier" name="loginIdentifier" />
-            <div class="error-message" id="loginIdentifierError"></div>
+            <label for="recoveryToken">Recovery Token</label>
+            <input
+              type="text"
+              id="recoveryToken"
+              name="recoveryToken"
+              placeholder="Input recovery token sent to your mail"
+            />
+            <div class="error-message" id="recoveryTokenError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <input
+              type="text"
+              id="newPassword"
+              name="newPassword"
+              placeholder="Choose an new password"
+            />
+            <div class="error-message" id="newPasswordError"></div>
           </div>
           <button id="submitBtn" type="submit" class="btn btn-primary">
-            Recover account
+            Reset password
           </button>
         </form>
 
         <div class="signup-link">
-          Create a new account instead?
-          <a href="/signup/index.html">Sign up here</a>
+          Go back to login?
+          <a href="/login/index.html">Click here</a>
         </div>
       </div>
     </section>
-    <script type="module" src="../scripts/forgetPassword.js"></script>
+    <script type="module" src="../scripts/resetPassword.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
