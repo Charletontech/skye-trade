@@ -1,6 +1,22 @@
 import { QuestZender, toast, url } from "../utils.js";
 
 export default async function composeMail() {
+  // widget for Quill editor
+  const quill = new Quill("#editor", {
+    theme: "snow",
+    placeholder: "Write your email message here...",
+    modules: {
+      toolbar: [
+        ["bold", "italic", "underline"],
+        [{ align: [] }],
+        [{ list: "bullet" }, { list: "ordered" }],
+        ["clean"],
+        [{ header: [1, 2, 3, false] }],
+      ],
+    },
+  });
+
+  //   handle the form submission
   const sendBtn = document.getElementById("sendBtn");
   document
     .getElementById("emailForm")
@@ -8,7 +24,7 @@ export default async function composeMail() {
       event.preventDefault();
 
       let isValid = true;
-      const fields = ["heading", "greeting", "recipient", "message"];
+      const fields = ["heading", "greeting", "recipient"];
 
       fields.forEach((field) => {
         const input = document.getElementById(field);
@@ -25,6 +41,12 @@ export default async function composeMail() {
         return;
       }
 
+      if (quill.getText().trim().length === 0) {
+        document.getElementById("editor").style.border = "1px solid red"; // Highlight editor
+        toast("info", "Missing fields", "Message field cannot be empty.");
+        return;
+      }
+
       //   prevent multiple submissions
       sendBtn.disabled = true;
       sendBtn.innerHTML = "Sending...";
@@ -34,8 +56,10 @@ export default async function composeMail() {
         heading: document.getElementById("heading").value,
         greeting: document.getElementById("greeting").value,
         recipient: document.getElementById("recipient").value,
-        message: document.getElementById("message").value,
+        message: quill.root.innerHTML,
       };
+
+      console.log(formData.message);
 
       try {
         const response = await QuestZender(
@@ -43,7 +67,6 @@ export default async function composeMail() {
           "POST",
           JSON.stringify(formData)
         );
-
         const message = await response.json();
         if (response.ok) {
           toast("success", "Mail Sent!", message.data);

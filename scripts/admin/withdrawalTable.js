@@ -24,6 +24,7 @@ export default async function withdrawalTable() {
     <td>${each.method}</td>
     <td>${each.walletAddress}</td>
     <td>${each.status}</td>
+    <td>${each.fullDetails}</td>
     <td><button class="button editWithdrawalBtn" data-username="${each.username}" data-withdrawalid="${each.withdrawalId}"> Edit </button> </td>
     `;
       document.getElementById("withdrawal-table-body").appendChild(row);

@@ -263,10 +263,6 @@ body {
   background: #00a882;
 }
 
-.hidden {
-  display: none;
-}
-
 .crypto-icon {
   width: 24px;
   height: 24px;
@@ -290,9 +286,80 @@ body {
   margin-right: 10px;
 }
 
-#closeDepositModal {
+#closeModal {
   cursor: pointer;
   color: var(--green);
+}
+
+/* Withdrawal modal section */
+.withdrawal-box {
+  background: #2c2c3b;
+  padding: 1rem;
+  border: 1px solid #666;
+  border-radius: 6px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 1.5rem;
+}
+
+.withdrawal-icons-box {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  width: 80%;
+}
+
+.withdrawal-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.withdrawal-box i {
+  font-size: 3.5rem;
+  color: #00b894;
+}
+
+.withdrawal-forms {
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  gap: 0.3rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.withdrawal-forms h3 {
+  text-align: center;
+}
+
+.withdrawal-forms input {
+  background: #2c2c3b;
+  padding: 1rem;
+  border: 1px solid #666;
+  border-radius: 6px;
+  width: 100%;
+  outline: none;
+  color: var(--green);
+  margin-top: 0.5rem;
+}
+
+.withdrawal-forms input::placeholder {
+  color: white;
+  letter-spacing: 2px;
+}
+
+.withdrawal-forms button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.hidden {
+  display: none;
 }
 
 /* main dashboard */

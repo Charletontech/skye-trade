@@ -48,10 +48,87 @@
       <button><a href="/login/index.html">Login</a></button>
     </div>
 
+    <!-- Withdrawal method modal -->
+    <div class="modal-overlay hidden" id="withdrawalModal">
+      <div class="modal-content">
+        <i class="material-icons closeModal" id="closeWithdrawalModal">close</i>
+        <h2>Withdrawal Method</h2>
+        <div class="withdrawal-box withdrawal-icons-box">
+          <div class="withdrawal-icon" id="bitcoinBtn">
+            <i class="fab fa-bitcoin"></i>
+            <span>Bitcoin</span>
+          </div>
+
+          <div class="withdrawal-icon" id="bankTransferBtn">
+            <i class="fas fa-landmark"></i>
+            <span>Bank transfer</span>
+          </div>
+        </div>
+        <div class="withdrawal-forms">
+          <form id="bitcoin-form" class="withdrawalForm hidden">
+            <h3>Fill form below</h3>
+            <input type="text" placeholder="Bitcoin wallet" name="wallet" />
+            <input type="text" placeholder="Amount in ($)" name="amount" />
+            <input
+              type="text"
+              name="method"
+              value="Bitcoin withdrawal"
+              readonly
+            />
+            <button type="submit" id="submitBitcoinBtn">Proceed</button>
+          </form>
+          <form id="bank-form" class="withdrawalForm hidden">
+            <h3>Fill form below</h3>
+            <input
+              type="text"
+              placeholder="Bank Name"
+              name="BankName"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Account Number"
+              name="AccountNumber"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Account Name"
+              name="AccountName"
+              required
+            />
+            <input type="number" placeholder="Amount in ($)" name="amount" />
+
+            <input
+              type="text"
+              placeholder="Swift Code"
+              name="SwiftCode"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Routine Number"
+              name="RoutineNumber"
+              required
+            />
+            <input type="text" placeholder="Zip Code" name="ZipCode" />
+            <input type="text" placeholder="City" name="City" required />
+            <input
+              type="text"
+              name="method"
+              value="Bank transfer withdrawal"
+              readonly
+            />
+            <button type="submit">Proceed</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- deposit modal -->
     <div id="depositModal" class="modal-overlay hidden">
       <div class="modal-content">
-        <i class="material-icons" id="closeDepositModal">close</i>
+        <i class="material-icons closeModal" id="closeDepositModal">close</i>
         <h2>Deposit Methods</h2>
         <div class="crypto-list">
           <div class="crypto-item">
@@ -228,13 +305,13 @@
     <div class="logo">
       <img src="../assets/logo-white.png" alt="logo" />
     </div>
-    <header>
+    <header id="header">
       <div class="hamburger" id="hamburger">
         <i class="material-icons">menu</i>
       </div>
       <button>Trading Session</button>
       <div class="user-info">
-        <p><span>Welcome, </span><strong>User123</strong></p>
+        <p><span>Welcome, </span><strong></strong></p>
         <img class="dp" src="../assets/avatar.jpg" alt="profile picture" />
       </div>
     </header>
@@ -303,6 +380,9 @@
         <li data-target="withdrawal">
           <a href="#tradingview-widget">Withdrawal</a>
         </li>
+        <!-- <li data-target="history">
+          <a href="#tradingview-widget">Withdrawal history</a>
+        </li> -->
         <li data-target="logout"><a href="#">Log Out</a></li>
       </ul>
     </div>

@@ -1,6 +1,6 @@
 export function url() {
-  // return "http://localhost:5000/api/v1";
-  return "https://skye-trade-server.onrender.com/api/v1";
+  return "http://localhost:5000/api/v1";
+  // return "https://skye-trade-server.onrender.com/api/v1";
 }
 
 export async function toast(icon, title, text) {
@@ -31,7 +31,7 @@ export async function toast(icon, title, text) {
     iconColor: color,
     customClass: { popup: "colored-toast" },
     showConfirmButton: false,
-    timer: 7000,
+    timer: 8000,
     timerProgressBar: true,
   });
 
