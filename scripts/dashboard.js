@@ -671,6 +671,10 @@ async function fetchWithdrawalHistory() {
   const message = await response.json();
   const userWithdrawalHistory = message.data;
   const historyBody = document.getElementById("history-body");
+  if (userWithdrawalHistory.length === 0) {
+    historyBody.innerHTML = `<tr><td colspan="4" style="text-align: center;">No withdrawal history found.</td></tr>`;
+    return;
+  }
 
   userWithdrawalHistory.forEach((each) => {
     historyBody.innerHTML += `<tr>
