@@ -1149,15 +1149,19 @@ header button {
   font-size: 1rem;
 }
 
-.withdraw-section .history-card {
-  background: white;
-  color: #333;
+.history-card {
+  color: white;
   padding: 1rem;
   border-radius: 8px;
 }
 
-.withdraw-section .history-card h3 {
+.history-card h3 {
   margin-bottom: 1rem;
+}
+
+.history-card table thead tr th {
+  color: var(--green);
+  font-size: 1.2em;
 }
 
 .withdraw-section table {
@@ -1173,18 +1177,20 @@ header button {
   border: 1px solid var(--border);
 }
 
-.withdraw-section .history-card {
+.history-card {
   overflow-x: auto;
 }
 
-.withdraw-section .history-card table {
+.history-card table {
   min-width: 500px;
+  text-align: left;
+  border-spacing: 30px 10px;
 }
 
-.withdraw-section .history-card::-webkit-scrollbar {
+.history-card::-webkit-scrollbar {
   height: 6px;
 }
-.withdraw-section .history-card::-webkit-scrollbar-thumb {
+.history-card::-webkit-scrollbar-thumb {
   background: #ccc;
   border-radius: 4px;
 }

@@ -660,6 +660,28 @@ function activateTaxCodeSubmission() {
   submitTaxCodeBtn.addEventListener("click", submitTaxCode);
 }
 
+// FETCH WITHDRAWAL HISTORY DATA
+async function fetchWithdrawalHistory() {
+  const response = await QuestZender(
+    url() + `/dashboard/withdrawal-history?username=${usernameG}`,
+    "GET",
+    null,
+    showNotLoggedModal
+  );
+  const message = await response.json();
+  const userWithdrawalHistory = message.data;
+  const historyBody = document.getElementById("history-body");
+
+  userWithdrawalHistory.forEach((each) => {
+    historyBody.innerHTML += `<tr>
+    <td>${each.status}</td>
+    <td>${each.withdrawalId}</td>
+    <td>${each.method}</td>
+    <td>${each.amount}</td>
+    </tr>`;
+  });
+}
+
 // HANDLE MENU CHANGE
 const hamburger = document.getElementById("hamburger");
 const sidebar = document.getElementById("sidebar");
@@ -729,8 +751,7 @@ const menuContentMap = {
   history: {
     title: "Withdrawal history",
     content: ` <div class="history-card">
-      <h3>My Withdraw History</h3>
-      <table>
+      <table style="width: 100%;">
         <thead>
           <tr>
             <th>Status</th>
@@ -739,8 +760,7 @@ const menuContentMap = {
             <th>Amount</th>
           </tr>
         </thead>
-        <tbody id="history-body">
-          <!-- Fetched history data will be injected here -->
+        <tbody id="history-body">          
         </tbody>
       </table>
     </div> `,
@@ -765,6 +785,7 @@ function loadContent(target) {
 
     return;
   } else if (target === "history") {
+    fetchWithdrawalHistory();
   } else if (target === "logout") {
     toast("warning", "Logging Out...");
     localStorage.removeItem("auth");
