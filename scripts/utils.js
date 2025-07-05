@@ -1,6 +1,6 @@
 export function url() {
-  // return "http://localhost:5000/api/v1";
-  return "https://skye-trade-server.onrender.com/api/v1";
+  return "http://localhost:5000/api/v1";
+  // return "https://skye-trade-server.onrender.com/api/v1";
 }
 
 export async function toast(icon, title, text) {

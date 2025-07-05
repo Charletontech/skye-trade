@@ -704,7 +704,7 @@ const menuContentMap = {
   },
   kyc: {
     title: "KYC Verification",
-    content: "",
+    content: kycContent,
   },
   // deposit: {
   //   title: "Deposit",

@@ -72,6 +72,12 @@ th {
 td {
   background-color: #fafafa;
 }
+
+.action-column {
+  display: flex;
+  gap: 4px;
+}
+
 .button {
   background-color: #3498db;
   color: white;
@@ -83,6 +89,11 @@ td {
 .button:hover {
   background-color: #2980b9;
 }
+
+.deleteUserBtn {
+  background-color: rgb(197, 92, 92);
+}
+
 .input-group {
   margin-bottom: 15px;
 }

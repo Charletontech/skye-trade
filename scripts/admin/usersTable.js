@@ -40,7 +40,10 @@ export default async function usersTableLogic() {
         <td>${user.accountType}</td>
         <td>${user.country}</td>
         <td>${user.currency}</td>
-        <td><button class="button editUserBtn"  data-username="${user.username}" data-userid="${user.userId}">Edit</button></td>
+        <td class="action-column">
+        <button class="button editUserBtn"  data-username="${user.username}" data-userid="${user.userId}">Edit</button>
+        <button class="button deleteUserBtn"  data-username="${user.username}" data-userid="${user.userId}">Delete</button>
+        </td>
       `;
       userTableBody.appendChild(row);
     });
@@ -102,6 +105,34 @@ export default async function usersTableLogic() {
         formContent.removeChild(document.querySelectorAll(".form-group")[1]);
       }
     }
+  });
+
+  // HANDLE DELETE USER BUTTON
+  const deleteUserBtns = document.querySelectorAll(".deleteUserBtn");
+  deleteUserBtns.forEach((deleteUserBtn) => {
+    deleteUserBtn.addEventListener("click", function () {
+      const username = deleteUserBtn.dataset.username;
+      const userId = deleteUserBtn.dataset.userid;
+
+      if (confirm(`Are you sure you want to delete account: ${username}?`)) {
+        QuestZender(url() + `/admin/delete-account/${userId}`, "DELETE")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Request error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            toast("success", "Success", data.data.message);
+            // Refresh the users table
+            document.getElementById("user-table-body").innerHTML = "";
+            populateUsersTable();
+          })
+          .catch((error) => {
+            toast("error", "Error", error.message);
+          });
+      }
+    });
   });
 
   //   HANDLE SUBMIT EDIT REQUEST
