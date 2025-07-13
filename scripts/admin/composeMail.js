@@ -8,6 +8,7 @@ export default async function composeMail() {
     modules: {
       toolbar: [
         ["bold", "italic", "underline"],
+        [{ color: [] }, { background: [] }],
         [{ align: [] }],
         [{ list: "bullet" }, { list: "ordered" }],
         ["clean"],

@@ -424,10 +424,13 @@ header button {
 
 /* main container */
 .main-container {
-  display: flex;
-  flex-direction: column;
   padding: 20px;
   margin-top: 0rem;
+}
+
+.top-section {
+  display: flex;
+  flex-direction: column;
 }
 
 .left-panel,
@@ -508,6 +511,7 @@ header button {
 #tradingview-widget {
   width: 100%;
   height: auto;
+  height: 500px;
 }
 
 /* Sidebar Styles */
@@ -649,7 +653,7 @@ header button {
 }
 
 @media (max-width: 850px) {
-  .main-container {
+  .top-section {
     flex-direction: column;
   }
   .left-panel,
@@ -740,16 +744,26 @@ header button {
   }
 
   .main-container {
+    height: 90vh;
+    overflow-y: auto;
+  }
+
+  .top-section {
     flex-direction: row;
     gap: 5px;
     padding-left: 270px;
-    height: 84vh;
+    /* height: 84vh; */
     /* margin-top: 1.7rem; */
     padding-top: 0;
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
     top: 5rem;
+  }
+
+  .watch-list-section {
+    padding-left: 270px;
+    margin-top: 5rem;
   }
 
   .left-panel,
@@ -802,6 +816,7 @@ header button {
   }
   header {
     position: fixed;
+    z-index: 10;
   }
   header .user-info {
     display: flex;
