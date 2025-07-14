@@ -128,18 +128,16 @@ window.addEventListener("click", (e) => {
 // LOGIC FOR TESTIMONIALS SECTION
 const testimonials = [
   {
-    image:
-      "https://superglobaltrade.com/uploads/testimonies/thumb/20aab71f88a53b30534b49407b1e61b4.jpg",
+    image: "./assets/1752496080408.jpg",
     text: "I love the the way they are reliable and consistent. Been investing with them for a year now and so far its been great!",
     name: "Jane Smith",
     username: "@janesmith",
   },
   {
-    image:
-      "https://superglobaltrade.com/uploads/testimonies/thumb/689098d009df1575c9e35c237e701927.jpg",
+    image: "./assets/testimonial-4.jpg",
     text: "My finances have greatly improved since i started investing with SkyTrade. Highly recommended!",
-    name: "David Lee",
-    username: "@davidlee",
+    name: "David Lenton",
+    username: "@davidlenton",
   },
   {
     image: "./assets/2.png",
@@ -148,15 +146,13 @@ const testimonials = [
     username: "@michealreeves",
   },
   {
-    image:
-      "https://superglobaltrade.com/uploads/testimonies/thumb/47cbbfcf351a84a2c74ba853146d9713.jpg",
+    image: "./assets/1752496080399.jpg",
     text: "I want to say a big thank you to SkyeTrade. Just got my profit of $7500 in my Bank account. This is indeed a trust worthy platform to invest",
     name: "Carly Phoebe",
     username: "@CarlyPhoebe11",
   },
   {
-    image:
-      "https://superglobaltrade.com/uploads/testimonies/thumb/998bbc715738adbee6391aa77185ed78.jpg",
+    image: "./assets/testimonial-3.jpg",
     text: "Am Allen from North Carolina, Currently living in Arizona with my Family, i came across SkyeTrade while browsing through facebook, I accessed the site and contact them via whatsapp and i started investing with $5000 and am making $51,560.00 Weekly.",
     name: "Allen Brewer",
     username: "@allenbrewer02",
