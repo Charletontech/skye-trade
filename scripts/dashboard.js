@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
       if (response.status === 404) {
-        console.log(message.data);
+        console.log(message.error);
       }
     } catch (error) {
       console.log("Error fetching KYC status");
@@ -340,67 +340,131 @@ document.addEventListener("DOMContentLoaded", function () {
   changePassword();
 });
 
+// function loadKycForm() {
+//   chartContainer.innerHTML = kycContent;
+//   const idFrontInput = document.getElementById("idFront");
+//   const idBackInput = document.getElementById("idBack");
+//   const previewButton = document.getElementById("preview-button");
+//   const kycForm = document.getElementById("kyc-form");
+//   idFrontInput.addEventListener("change", (event) => {
+//     handleFileChange(event, "idFrontPreview");
+//   });
+
+//   idBackInput.addEventListener("change", (event) => {
+//     handleFileChange(event, "idBackPreview");
+//   });
+
+//   previewButton.addEventListener("click", () => {
+//     // Handle preview logic here.  For simplicity, you can
+//     // display the form values in an alert, or in a designated
+//     // preview section within the form.
+//     const idType = document.getElementById("idType").value;
+//     const idFrontFile = idFrontInput.files[0];
+//     const idBackFile = idBackInput.files[0];
+
+//     let previewText = `ID Type: ${idType}`;
+//     if (idFrontFile) {
+//       previewText += `, Front Image: ${idFrontFile.name}`;
+//     }
+//     if (idBackFile) {
+//       previewText += `, Back Image: ${idBackFile.name}`;
+//     }
+//     alert(`Preview Data:\n${previewText}`);
+//   });
+
+//   // HANDLE SUBMIT KYC FORM
+//   kycForm.addEventListener("submit", async function (event) {
+//     event.preventDefault();
+//     console.log(event);
+//     try {
+//       const formData = new FormData(kycForm);
+
+//       const response = await QuestZender(
+//         url() + "/dashboard/kyc",
+//         "POST",
+//         formData,
+//         showNotLoggedModal,
+//         false
+//       );
+
+//       let message = await response.json();
+//       if (response.ok) {
+//         toast("success", "Success!", message.data);
+//       } else {
+//         toast(
+//           "error",
+//           "Error",
+//           `Unable to submit KYC your request. Error: ${message.error}`
+//         );
+//       }
+//     } catch (error) {
+//       alert("An unexpected error occurred");
+//     }
+//   });
+// }
+
 function loadKycForm() {
   chartContainer.innerHTML = kycContent;
 
-  const idFrontInput = document.getElementById("idFront");
-  const idBackInput = document.getElementById("idBack");
-  const previewButton = document.getElementById("preview-button");
-  const kycForm = document.getElementById("kyc-form");
+  // Delay binding to ensure DOM is updated
+  requestAnimationFrame(() => {
+    const idFrontInput = document.getElementById("idFront");
+    const idBackInput = document.getElementById("idBack");
+    const previewButton = document.getElementById("preview-button");
+    const kycForm = document.getElementById("kyc-form");
 
-  idFrontInput.addEventListener("change", (event) => {
-    handleFileChange(event, "idFrontPreview");
-  });
-
-  idBackInput.addEventListener("change", (event) => {
-    handleFileChange(event, "idBackPreview");
-  });
-
-  previewButton.addEventListener("click", () => {
-    // Handle preview logic here.  For simplicity, you can
-    // display the form values in an alert, or in a designated
-    // preview section within the form.
-    const idType = document.getElementById("idType").value;
-    const idFrontFile = idFrontInput.files[0];
-    const idBackFile = idBackInput.files[0];
-
-    let previewText = `ID Type: ${idType}`;
-    if (idFrontFile) {
-      previewText += `, Front Image: ${idFrontFile.name}`;
-    }
-    if (idBackFile) {
-      previewText += `, Back Image: ${idBackFile.name}`;
-    }
-    alert(`Preview Data:\n${previewText}`);
-  });
-
-  // HANDLE SUBMIT KYC FORM
-  kycForm.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    try {
-      const formData = new FormData(kycForm);
-
-      const response = await QuestZender(
-        url() + "/dashboard/kyc",
-        "POST",
-        formData,
-        showNotLoggedModal,
-        false
+    if (!idFrontInput || !idBackInput || !previewButton || !kycForm) {
+      console.error(
+        "One or more KYC elements not found in DOM check 'loadKycForm()' function"
       );
-
-      let message = await response.json();
-      if (response.ok) {
-        toast("success", "Success!", message.data);
-      } else {
-        toast(
-          "error",
-          "Error",
-          `Unable to submit KYC your request. Error: ${message.error}`
-        );
-      }
-    } catch (error) {
-      alert("An unexpected error occurred");
+      return;
     }
+
+    idFrontInput.addEventListener("change", (event) => {
+      handleFileChange(event, "idFrontPreview");
+    });
+
+    idBackInput.addEventListener("change", (event) => {
+      handleFileChange(event, "idBackPreview");
+    });
+
+    previewButton.addEventListener("click", () => {
+      const idType = document.getElementById("idType").value;
+      const idFrontFile = idFrontInput.files[0];
+      const idBackFile = idBackInput.files[0];
+
+      let previewText = `ID Type: ${idType}`;
+      if (idFrontFile) previewText += `, Front Image: ${idFrontFile.name}`;
+      if (idBackFile) previewText += `, Back Image: ${idBackFile.name}`;
+
+      alert(`Preview Data:\n${previewText}`);
+    });
+
+    kycForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      try {
+        const formData = new FormData(kycForm);
+        const response = await QuestZender(
+          url() + "/dashboard/kyc",
+          "POST",
+          formData,
+          showNotLoggedModal,
+          false
+        );
+        const message = await response.json();
+        if (response.ok) {
+          toast("success", "Success!", message.data);
+        } else {
+          toast(
+            "error",
+            "Error",
+            `Unable to submit KYC. Error: ${message.error}`
+          );
+        }
+      } catch (error) {
+        alert("An unexpected error occurred");
+      }
+    });
   });
 }
 
