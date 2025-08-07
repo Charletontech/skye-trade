@@ -250,42 +250,59 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // HANDLE LOGIC TO CHECK/FETCH KYC STATUS
-  handleFetchKycStatus();
-  async function handleFetchKycStatus() {
-    try {
-      var response = await QuestZender(
-        url() + "/dashboard/check-kyc-status",
-        "GET",
-        null,
-        showNotLoggedModal
-      );
-      const message = await response.json();
-      if (response.ok) {
-        switch (message.data) {
-          case "approved":
-            kycContent = `
+  // LOGIC TO HANDLE EDIT USER DATA FORM
+  const editUserDataForm = document.getElementById("edit-user-data-form");
+  editUserDataForm.addEventListener("submit", editUserData);
+
+  // LOGIC TO HANDLE CHANGE PASSWORD
+  changePassword();
+});
+
+// HANDLE LOGIC TO CHECK/FETCH KYC STATUS
+async function handleFetchKycStatus() {
+  try {
+    var response = await QuestZender(
+      url() + "/dashboard/check-kyc-status",
+      "GET",
+      null,
+      showNotLoggedModal
+    );
+    const message = await response.json();
+    if (response.status === 404) {
+      console.log(message.error);
+      return "no kyc submitted";
+    }
+    return message.data;
+  } catch (error) {
+    console.log("Error fetching KYC status");
+  }
+}
+
+const kycStatus = await handleFetchKycStatus();
+switch (kycStatus) {
+  case "approved":
+    kycContent = `
             <div class="kyc-pending">
               <h3>KYC Approved</h3>
               <p>Congratulations! You have been verified.</p>
               <img src="../assets/Green Approved Stamp Image_simple_compose.png" alt="KYC Pending" class="pending-image" />
             </div>
             `;
-            break;
-          case "pending":
-            kycContent = `
+    break;
+  case "pending":
+    kycContent = `
             <div class="kyc-pending">
               <h3>KYC Under Review</h3>
               <p>Your KYC verification is currently being processed. Please check back later.</p>
               <img src="../assets/Under Review Stamp.png" alt="KYC Pending" class="pending-image" />
             </div>
             `;
-            break;
-          case "declined":
-            kycContent = `
-            <div class="kyc-form-container">
-              <h3 style="color: red">KYC Verification Declined</h3>
-              <p>Your KYC verification has been declined. Please upload another document and re-apply. Ensure it meets our verification requirements this time.</p>
+    break;
+  case "declined":
+    kycContent = `
+      <div class="kyc-form-container">
+      <h3 style="color: red">KYC Verification Declined</h3>
+      <p>Your KYC verification has been declined. Please upload another document and re-apply. Ensure it meets our verification requirements this time.</p>
               <form id="kyc-form">
                 <div class="kyc-form-group">
                   <label for="idType">ID Type</label>
@@ -294,9 +311,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <option value="national_id">National ID Card</option>
                     <option value="drivers_license">Driver's License</option>
                     <option value="residence_permit">Residence Permit</option>
-                  </select>
-                </div>
-                <div class="kyc-form-group">
+                    </select>
+                    </div>
+                    <div class="kyc-form-group">
                   <label for="idFront">Upload ID Card (Front)</label>
                   <div class="file-upload-wrapper">
                     <span class="file-upload-text">Choose File</span>
@@ -304,8 +321,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     <input type="file" id="idFront" name="idFront" accept="image/*" required />
                   </div>
                   <div class="preview-container" id="idFrontPreview"></div>
-                </div>
-                <div class="kyc-form-group">
+                  </div>
+                  <div class="kyc-form-group">
                   <label for="idBack">Upload ID Card (Back)</label>
                   <div class="file-upload-wrapper">
                     <span class="file-upload-text">Choose File</span>
@@ -315,34 +332,16 @@ document.addEventListener("DOMContentLoaded", function () {
                   <div class="preview-container" id="idBackPreview"></div>
                 </div>
                 <div class="kyc-form-actions">
-                  <button type="button" id="preview-button">Preview</button>
-                  <button type="submit">Submit</button>
+                <button type="button" id="preview-button">Preview</button>
+                <button type="submit">Submit</button>
                 </div>
               </form>
             </div>
             `;
-            break;
-        }
-      }
-      if (response.status === 404) {
-        console.log(message.error);
-      }
-    } catch (error) {
-      console.log("Error fetching KYC status");
-    }
-  }
+    break;
+}
 
-  // LOGIC TO HANDLE EDIT USER DATA FORM
-  const editUserDataForm = document.getElementById("edit-user-data-form");
-  editUserDataForm.addEventListener("submit", editUserData);
-
-  // LOGIC TO HANDLE CHANGE PASSWORD
-  changePassword();
-});
-
-function loadKycForm() {
-  chartContainer.innerHTML = kycContent;
-
+async function loadKycForm() {
   // Delay binding to ensure DOM is updated
   requestAnimationFrame(() => {
     const idFrontInput = document.getElementById("idFront");
