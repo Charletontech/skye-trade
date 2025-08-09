@@ -279,6 +279,7 @@ async function handleFetchKycStatus() {
 }
 
 const kycStatus = await handleFetchKycStatus();
+console.log(kycStatus);
 switch (kycStatus) {
   case "approved":
     kycContent = `
