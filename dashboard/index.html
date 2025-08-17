@@ -24,44 +24,44 @@
 
     <link rel="stylesheet" href="../css/swal-toast.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
-     <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-      var _smartsupp = _smartsupp || {};
-      _smartsupp.key = "7c83051488f2c25478ecd6f026ae3231b1fe75c7";
-      window.smartsupp ||
-        (function (d) {
-          var s,
-            c,
-            o = (smartsupp = function () {
-              o._.push(arguments);
-            });
-          o._ = [];
-          s = d.getElementsByTagName("script")[0];
-          c = d.createElement("script");
-          c.type = "text/javascript";
-          c.charset = "utf-8";
-          c.async = true;
-          c.src = "https://www.smartsuppchat.com/loader.js?";
-          s.parentNode.insertBefore(c, s);
-        })(document);
-    </script>
-    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
-  </head>
+     </head>
   <body>
-    <!-- google translator -->
-    <div id="google_translate_element"></div>
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          { pageLanguage: "en" },
-          "google_translate_element"
-        );
-      }
-    </script>
-    <script
-      type="text/javascript"
-      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    ></script>
+    <div class="langBox-down ">
+          <!-- Hidden Google Translate container -->
+          <div id="google_translate_element" style="display: none"></div>
+          <div id="google_translate_element2" style="display: none"></div>
+
+          <!-- Translate button with dropdown -->
+          <div class="translate-dropdown dropdown-content-up">
+            <button class="translate-btn">
+              <img class="defaultFlag" src="https://flagcdn.com/w40/gb.png" />
+            </button>
+            <div id="language-menu" class="dropdown-content dropdown-content-up">
+              <div data-code="en|en" data-flag="gb" class="language-menu-item">
+                <img src="https://flagcdn.com/w40/gb.png" alt="English" />
+                English
+              </div>
+              <div data-code="en|fr" data-flag="fr" class="language-menu-item">
+                <img src="https://flagcdn.com/w40/fr.png" alt="French" /> French
+              </div>
+              <div data-code="en|es" data-flag="es" class="language-menu-item">
+                <img src="https://flagcdn.com/w40/es.png" alt="Spanish" />
+                Spanish
+              </div>
+              <div data-code="en|de" data-flag="de" class="language-menu-item">
+                <img src="https://flagcdn.com/w40/de.png" alt="German" /> German
+              </div>
+              <div
+                data-code="en|zh-CN"
+                data-flag="cn"
+                class="language-menu-item"
+              >
+                <img src="https://flagcdn.com/w40/cn.png" alt="Chinese" />
+                Chinese
+              </div>
+            </div>
+          </div>
+        </div>
 
     <!-- Not logged in display -->
     <div class="notLoggedCont">
@@ -659,20 +659,12 @@
     <script type="module" src="../scripts/dashboard.js"></script>
     <script src="https://s3.tradingview.com/tv.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-      var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-      (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = "https://embed.tawk.to/682fe07ff0e78a190a0ca16d/1irtg9tg5";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
-        s0.parentNode.insertBefore(s1, s0);
-      })();
-    </script>
-    <!--End of Tawk.to Script-->
+    <script src="../scripts/smartsuppLivechat.js"></script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"
+    ></script>
+    <script src="../scripts/googleTranslate.js"></script>
+  </body>
   </body>
 </html>

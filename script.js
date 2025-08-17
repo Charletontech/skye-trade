@@ -1,6 +1,19 @@
+// import { smartsuppLiveSupport } from "./scripts/utils.js";
+
 // LOGIC TO TOGGLE MENU
 function toggleMenuBtn() {
   document.querySelector(".nav-links").classList.toggle("show-nav-links");
+}
+
+// INITIALIZE GOOGLE TRANSLATE
+function googleTranslateElementInit2() {
+  new google.translate.TranslateElement(
+    {
+      pageLanguage: "en",
+      autoDisplay: false,
+    },
+    "google_translate_element2"
+  );
 }
 
 // LOGIC FOR CAROUSEL

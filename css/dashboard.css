@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap");
-
+@import url("./translate-button.css");
 :root {
   --primary: #1f1f2e;
   --secondary: #2c2c3b;

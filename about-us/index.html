@@ -5,30 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SkyeTrade - About Us</title>
     <link rel="stylesheet" href="../css/about-us.css" />
-     <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-      var _smartsupp = _smartsupp || {};
-      _smartsupp.key = "7c83051488f2c25478ecd6f026ae3231b1fe75c7";
-      window.smartsupp ||
-        (function (d) {
-          var s,
-            c,
-            o = (smartsupp = function () {
-              o._.push(arguments);
-            });
-          o._ = [];
-          s = d.getElementsByTagName("script")[0];
-          c = d.createElement("script");
-          c.type = "text/javascript";
-          c.charset = "utf-8";
-          c.async = true;
-          c.src = "https://www.smartsuppchat.com/loader.js?";
-          s.parentNode.insertBefore(c, s);
-        })(document);
-    </script>
-    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
   </head>
   <body>
+    <div class="langBox-down">
+      <!-- Hidden Google Translate container -->
+      <div id="google_translate_element" style="display: none"></div>
+      <div id="google_translate_element2" style="display: none"></div>
+
+      <!-- Translate button with dropdown -->
+      <div class="translate-dropdown dropdown-content-up">
+        <button class="translate-btn">
+          <img class="defaultFlag" src="https://flagcdn.com/w40/gb.png" />
+        </button>
+        <div id="language-menu" class="dropdown-content dropdown-content-up">
+          <div data-code="en|en" data-flag="gb" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/gb.png" alt="English" />
+            English
+          </div>
+          <div data-code="en|fr" data-flag="fr" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/fr.png" alt="French" /> French
+          </div>
+          <div data-code="en|es" data-flag="es" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/es.png" alt="Spanish" />
+            Spanish
+          </div>
+          <div data-code="en|de" data-flag="de" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/de.png" alt="German" /> German
+          </div>
+          <div data-code="en|zh-CN" data-flag="cn" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/cn.png" alt="Chinese" />
+            Chinese
+          </div>
+        </div>
+      </div>
+    </div>
     <header>
       <div class="container header-container">
         <div class="logo">
@@ -161,5 +171,11 @@
           document.querySelector(".nav-links").classList.toggle("show");
         });
     </script>
+    <script src="../scripts/smartsuppLivechat.js"></script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"
+    ></script>
+    <script src="../scripts/googleTranslate.js"></script>
   </body>
 </html>
