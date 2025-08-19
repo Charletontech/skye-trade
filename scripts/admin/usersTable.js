@@ -84,8 +84,9 @@ export default async function usersTableLogic() {
       //   remove previous content
       if (formContent.children.length > 2) {
         formContent.removeChild(document.querySelectorAll(".form-group")[1]);
+        formContent.removeChild(document.querySelectorAll(".form-group")[2]);
       }
-    } else {
+    } else if (editTypeInput.value === "switchAccount") {
       const div = document.createElement("div");
       div.classList.add("form-group");
       div.innerHTML = `
@@ -103,6 +104,28 @@ export default async function usersTableLogic() {
       //   remove previous content
       if (formContent.children.length > 2) {
         formContent.removeChild(document.querySelectorAll(".form-group")[1]);
+        formContent.removeChild(document.querySelectorAll(".form-group")[2]);
+      }
+    } else if (editTypeInput.value === "updateStatus") {
+      const div = document.createElement("div");
+      div.classList.add("form-group");
+      div.innerHTML = `
+               <div class="form-group">
+                      <label>Update status</label>
+                       <select name="status" required>
+                        <option value="">--Select New User Status--</option>
+                        <option value="approved">Approved</option>
+                        <option value="pending">Pending</option>
+                        <option value="reject">Reject</option>
+                      </select>
+                    </div>
+              `;
+      formContent.appendChild(div);
+
+      //   remove previous content
+      if (formContent.children.length > 2) {
+        formContent.removeChild(document.querySelectorAll(".form-group")[1]);
+        formContent.removeChild(document.querySelectorAll(".form-group")[2]);
       }
     }
   });
