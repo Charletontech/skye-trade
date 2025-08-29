@@ -180,6 +180,7 @@ header nav a {
   padding: 10px;
   border-left: 4px solid #00aaff;
   margin-bottom: 15px;
+  margin-top: 10px;
   font-size: 14px;
   color: #333;
 }
@@ -239,6 +240,23 @@ form button:hover {
   background: #008ecc;
 }
 
+.verification-status-cont img {
+  width: 98%;
+  display: block;
+  margin: auto;
+  height: 15rem;
+}
+
+.statusDisplay,
+.verification-status-cont {
+  display: none;
+}
+
+.statusDisplay {
+  margin-bottom: 20px;
+  color: #f5a623;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   header {
@@ -253,5 +271,16 @@ form button:hover {
 
   .pair {
     flex: 1 1 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  header,
+  .verification,
+  .market,
+  .user-profile {
+    display: block;
+    width: 50%;
+    margin: 10px auto;
   }
 }

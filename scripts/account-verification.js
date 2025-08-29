@@ -5,6 +5,37 @@ export function showNotLoggedModal() {
   notLoggedDisplay.classList.add("showNotLogged");
 }
 
+// get account verification status
+QuestZender(url() + "/dashboard/account-verification-status", "GET")
+  .then((response) => {
+    if (!response.ok) {
+      toast("error", "Error", "An error occurred while fetching user data");
+      return;
+    }
+    return response.json();
+  })
+  .then(({ data }) => {
+    if (!data) return;
+    if (data.providedIdDocument) {
+      const uploadForm = document.getElementById("uploadForm");
+      const verificationTitle = document.querySelector(".verificationTitle");
+      const hint = document.querySelector(".hint");
+      const verificationStatusCont = document.querySelector(
+        ".verification-status-cont"
+      );
+      const statusDisplay = document.querySelector(".statusDisplay");
+
+      statusDisplay.style.display = "initial";
+      statusDisplay.innerHTML =
+        data.status.charAt(0).toUpperCase() + data.status.slice(1); //just to make first letter uppercase
+      uploadForm.style.display = "none";
+      verificationStatusCont.style.display = "initial";
+      verificationTitle.innerHTML = "Verification Status:";
+      hint.innerHTML =
+        "You have uploaded an identification document for your account verification. Please wait while an Admin reviews and approves it. Thank you...";
+    }
+  });
+
 QuestZender(url() + "/dashboard/me", "GET", null, showNotLoggedModal)
   .then((response) => {
     if (!response.ok) {

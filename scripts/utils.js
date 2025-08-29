@@ -47,7 +47,7 @@ export async function QuestZender(
 ) {
   const options = {
     method,
-    credentials: "include",
+    // credentials: "include",
     headers: {},
   };
 

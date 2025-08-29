@@ -110,10 +110,11 @@
 
     <!-- Verification Upload -->
     <section class="verification">
-      <h3>Provide A Valid Means Of Identification</h3>
+      <h3 class="verificationTitle">Provide A Valid Means Of Identification</h3>
+      <h1 class="statusDisplay">Pending</h1>
       <p class="hint">
         Snap the front view of your valid ID card or International Passport or
-        Drivers Licence to get your account approved.
+        Drivers License to get your account approved.
       </p>
 
       <form id="uploadForm">
@@ -132,6 +133,10 @@
 
         <button type="submit">Upload ID</button>
       </form>
+
+      <div class="verification-status-cont">
+        <img src="../assets/Under Review Stamp.png" alt="" />
+      </div>
     </section>
 
     <script src="../scripts/account-verification.js" type="module"></script>
