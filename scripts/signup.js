@@ -47,24 +47,22 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       let message = await response.json();
+
       if (!response.ok) {
         toast("info", "Oops!", message.error);
         throw new Error("Something went wrong! " + message.error);
       }
+
+      // check if response is forbidden
+      if (response.status === 403) {
+        var tempToken = JSON.parse(message.error);
+        tempToken = tempToken.token;
+        localStorage.setItem("auth", JSON.stringify({ token: tempToken }));
+        window.location = "/dashboard/account-verification.html";
+        return;
+      }
+
       toast("success", "Success", message.data);
-
-      // // Simulate random API success or failure
-      // const randomSuccess = Math.random() < 0.7; // 70% success rate
-
-      // await new Promise((resolve, reject) => {
-      //   setTimeout(() => {
-      //     if (randomSuccess) {
-      //       resolve(); // pretend it succeeded
-      //     } else {
-      //       reject(new Error("Random API failure!")); // pretend it failed
-      //     }
-      //   }, 2000); // simulate 2 sec network delay
-      // });
 
       // If successful
       successMessage.style.display = "block";
@@ -108,3 +106,16 @@ fetch("../features/countries.json")
     });
   })
   .catch((error) => console.error("Error loading countries:", error));
+
+// // Simulate random API success or failure
+// const randomSuccess = Math.random() < 0.7; // 70% success rate
+
+// await new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     if (randomSuccess) {
+//       resolve(); // pretend it succeeded
+//     } else {
+//       reject(new Error("Random API failure!")); // pretend it failed
+//     }
+//   }, 2000); // simulate 2 sec network delay
+// });
