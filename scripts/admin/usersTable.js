@@ -34,15 +34,27 @@ export default async function usersTableLogic() {
         <td>${user.fullName}</td>
         <td>${user.email}</td>
         <td>${user.username}</td>
+        <td>${user.status}</td>
         <td>${user.phone}</td>
         <td>${user.balance}</td>
         <td>${user.gender}</td>
         <td>${user.accountType}</td>
         <td>${user.country}</td>
         <td>${user.currency}</td>
-        <td class="action-column">
-        <button class="button editUserBtn"  data-username="${user.username}" data-userid="${user.userId}">Edit</button>
-        <button class="button deleteUserBtn"  data-username="${user.username}" data-userid="${user.userId}">Delete</button>
+        <td>${user.verificationDocumentType}</td>
+<td>
+  ${
+    user.verificationDocumentType === "Not verified"
+      ? `${user.verificationDocument}`
+      : `<a href="${user.verificationDocument}" target="_blank">view document</a>`
+  }
+</td>        <td class="action-column">
+        <button class="button editUserBtn"  data-username="${
+          user.username
+        }" data-userid="${user.userId}">Edit</button>
+        <button class="button deleteUserBtn"  data-username="${
+          user.username
+        }" data-userid="${user.userId}">Delete</button>
         </td>
       `;
       userTableBody.appendChild(row);

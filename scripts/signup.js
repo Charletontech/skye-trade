@@ -1,4 +1,4 @@
-import { url, toast } from "./utils.js";
+import { url, toast, createSession } from "./utils.js";
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("signupForm");
   const successMessage = document.getElementById("successMessage");
@@ -73,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Reset form
       form.reset();
-      window.location = "/login";
+      createSession(message, true);
+      window.location = "/dashboard";
     } catch (error) {
       // If failed
       console.log(error);

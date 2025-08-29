@@ -1,6 +1,6 @@
 export function url() {
-  // return "http://localhost:5000/api/v1";
-  return "https://skye-trade-server.onrender.com/api/v1";
+  return "http://localhost:5000/api/v1";
+  // return "https://skye-trade-server.onrender.com/api/v1";
 }
 
 export async function toast(icon, title, text) {
@@ -84,4 +84,14 @@ export async function QuestZender(
   }
 
   return response;
+}
+
+export function createSession(message, isSignUp = false) {
+  if (isSignUp) {
+    delete message.data?.message;
+  }
+  const loginTime = new Date().getTime();
+  delete message.success;
+  message.data["loginTime"] = loginTime;
+  localStorage.setItem("auth", JSON.stringify(message.data));
 }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Verification dashboard</title>
+    <link rel="stylesheet" href="../css/account-verification.css" />
+    <link rel="stylesheet" href="../css/swal-toast.css" />
+    <link rel="shortcut icon" href="../assets/arrow.png" type="image/x-icon" />
+  </head>
+  <body>
+    <!-- Not logged in display -->
+    <div class="notLoggedCont">
+      <h2>Not Logged In!</h2>
+      <img src="../assets/Secure login-pana.png" alt="" />
+      <button><a href="/login/index.html">Login</a></button>
+    </div>
+
+    <div class="logo">
+      <img src="../assets/logo-white.png" alt="logo" />
+    </div>
+
+    <!-- Header / Navbar -->
+    <header>
+      <h2>Dashboard</h2>
+      <nav><a href="#">Home</a> / <a href="#">Account Verification</a></nav>
+    </header>
+
+    <!-- User Info -->
+    <section class="user-profile">
+      <!-- <div class="avatar"></div> -->
+      <img class="avatar" src="../assets/avatar.jpg" alt="" />
+      <span class="username"></span>
+    </section>
+
+    <!-- Market Rates -->
+    <section class="market">
+      <div class="pair">
+        <!-- EUR/USD live price -->
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script
+            type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"
+            async
+          >
+            {
+              "symbol": "FX:EURUSD",
+              "width": "100%",
+              "height": "100",
+              "locale": "en",
+              "dateRange": "1D",
+              "colorTheme": "dark",
+              "trendLineColor": "#37a6ef",
+              "underLineColor": "#E3F2FD",
+              "isTransparent": false
+            }
+          </script>
+        </div>
+      </div>
+
+      <div class="pair">
+        <!-- BTC/USD live price -->
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script
+            type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"
+            async
+          >
+            {
+              "symbol": "BINANCE:BTCUSDT",
+              "width": "100%",
+              "height": "100",
+              "locale": "en",
+              "dateRange": "1D",
+              "colorTheme": "dark",
+              "trendLineColor": "#37a6ef",
+              "underLineColor": "#E3F2FD",
+              "isTransparent": false
+            }
+          </script>
+        </div>
+      </div>
+
+      <div class="pair">
+        <!-- ETH/USD live price -->
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script
+            type="text/javascript"
+            src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"
+            async
+          >
+            {
+              "symbol": "BINANCE:ETHUSDT",
+              "width": "100%",
+              "height": "100",
+              "locale": "en",
+              "dateRange": "1D",
+              "colorTheme": "dark",
+              "trendLineColor": "#37a6ef",
+              "underLineColor": "#E3F2FD",
+              "isTransparent": false
+            }
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification Upload -->
+    <section class="verification">
+      <h3>Provide A Valid Means Of Identification</h3>
+      <p class="hint">
+        Snap the front view of your valid ID card or International Passport or
+        Drivers Licence to get your account approved.
+      </p>
+
+      <form id="uploadForm">
+        <div class="file-input">
+          <label for="idFile">ID</label>
+          <input type="file" id="idFile" name="idFile" required />
+        </div>
+
+        <label for="docType">Choose Document Type</label>
+        <select id="docType" name="docType" required>
+          <option value="">-- Select Document Type --</option>
+          <option value="Passport">International Passport</option>
+          <option value="National ID Card">National ID Card</option>
+          <option value="Driver's Licence">Driver's Licence</option>
+        </select>
+
+        <button type="submit">Upload ID</button>
+      </form>
+    </section>
+
+    <script src="../scripts/account-verification.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../scripts/smartsuppLivechat.js"></script>
+  </body>
+</html>

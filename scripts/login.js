@@ -1,4 +1,4 @@
-import { QuestZender, toast, url } from "./utils.js";
+import { createSession, QuestZender, toast, url } from "./utils.js";
 const loginForm = document.getElementById("loginForm");
 const loginIdentifierInput = document.getElementById("loginIdentifier");
 const passwordInput = document.getElementById("password");
@@ -49,6 +49,14 @@ loginForm.addEventListener("submit", async (event) => {
 
       var message = await response.json();
 
+      if (response.status === 403) {
+        var tempToken = JSON.parse(message.error);
+        tempToken = tempToken.token;
+        localStorage.setItem("auth", JSON.stringify({ token: tempToken }));
+        window.location = "/dashboard/account-verification.html";
+        return;
+      }
+
       if (!response.ok) {
         toast("error", "Login Failed!", message.error);
         return;
@@ -71,13 +79,6 @@ loginForm.addEventListener("submit", async (event) => {
     } finally {
       submitBtn.innerText = "Log In";
       submitBtn.disabled = false;
-    }
-
-    function createSession(message) {
-      const loginTime = new Date().getTime();
-      delete message.success;
-      message.data["loginTime"] = loginTime;
-      localStorage.setItem("auth", JSON.stringify(message.data));
     }
   }
 });
