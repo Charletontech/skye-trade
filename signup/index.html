@@ -14,17 +14,19 @@
 
   <body>
     <div class="container">
-      <div class="langBox-down ">
-          <!-- Hidden Google Translate container -->
+      <!-- <div class="langBox-down "> -->
           <div id="google_translate_element" style="display: none"></div>
           <div id="google_translate_element2" style="display: none"></div>
 
-          <!-- Translate button with dropdown -->
-          <div class="translate-dropdown dropdown-content-up">
-            <button class="translate-btn">
+         
+        <!-- </div> -->
+      <div class="form-wrapper">
+         <!-- translate button -->
+           <div class="translate-dropdown dropdown-content-up">
+            <button class="translate-btn" style="position: fixed; top: 40px;">
               <img class="defaultFlag" src="https://flagcdn.com/w40/gb.png" />
             </button>
-            <div id="language-menu" class="dropdown-content dropdown-content-up">
+            <div id="language-menu" class="dropdown-content" style="margin-top: 20px; position: fixed; top: 40px;" >
               <div data-code="en|en" data-flag="gb" class="language-menu-item">
                 <img src="https://flagcdn.com/w40/gb.png" alt="English" />
                 English
@@ -49,9 +51,7 @@
               </div>
             </div>
           </div>
-        </div>
-      <div class="form-wrapper">
-         
+          <!-- translate button ends -->
         <div class="logo">
           <img src="../assets/logo-white.png" alt="logo" />
         </div>
@@ -142,6 +142,10 @@
     <script type="module" src="../scripts/signup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../scripts/smartsuppLivechat.js"></script>
+     <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"
+    ></script>
     <script src="../scripts/googleTranslate.js"></script>
   </body>
 </html>

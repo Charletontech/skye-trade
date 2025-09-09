@@ -206,12 +206,48 @@ const alerts = [
   "Olivia from USA has just earned $17,000",
 ];
 
+const withdrawalAlerts = [
+  "Ximena from Guadalajara, MEXICO has just withdrawn a sum of $20,320",
+  "João from São Paulo, BRAZIL has just withdrawn a sum of $31,750",
+  "Fatima from Dubai, UAE has just withdrawn a sum of $18,100",
+  "Alfie from Manchester, UK has just withdrawn a sum of $25,200",
+  "Noah from Toronto, CANADA has just withdrawn a sum of $50,240",
+  "Luc from Luxembourg City, LUXEMBOURG has just withdrawn a sum of $19,040",
+  "Taj from Sydney, AUSTRALIA has just withdrawn a sum of $70,046",
+  "Hassan from Cairo, EGYPT has just withdrawn a sum of $80,987",
+  "Sven from Amsterdam, NETHERLANDS has just withdrawn a sum of $91,987",
+  "Dmitri from Saint Petersburg, RUSSIA has just withdrawn a sum of $100,300",
+  "Freja from Stockholm, SWEDEN has just withdrawn a sum of $43,500",
+  "Jackson from Chicago, USA has just withdrawn a sum of $27,000",
+  "Giulia from Milan, ITALY has just withdrawn a sum of $22,500",
+  "Aaliyah from Atlanta, USA has just withdrawn a sum of $17,000",
+];
+
 function showAlert() {
   const alertBox = document.getElementById("earning-alert");
   const messageEl = document.getElementById("alert-message");
 
   // Random message
   const randomMessage = alerts[Math.floor(Math.random() * alerts.length)];
+  messageEl.textContent = randomMessage;
+
+  // Show alert
+  alertBox.classList.remove("hidden");
+
+  // Hide after 5 seconds
+  setTimeout(() => {
+    alertBox.classList.add("hidden");
+  }, 5000);
+}
+
+// show withdrawal alerts
+function showWithdrawalAlert() {
+  const alertBox = document.getElementById("withdrawal-alert");
+  const messageEl = document.getElementById("withdrawal-alert-message");
+
+  // Random message
+  const randomMessage =
+    withdrawalAlerts[Math.floor(Math.random() * withdrawalAlerts.length)];
   messageEl.textContent = randomMessage;
 
   // Show alert
@@ -233,8 +269,14 @@ function triggerAlertsLoop() {
   setTimeout(triggerAlertsLoop, randomInterval());
 }
 
+function triggerWithdrawalAlertsLoop() {
+  showWithdrawalAlert();
+  setTimeout(triggerWithdrawalAlertsLoop, randomInterval());
+}
+
 // Start the loop after a short delay
 setTimeout(triggerAlertsLoop, 5000);
+setTimeout(triggerWithdrawalAlertsLoop, 5000);
 
 // LOGIC FOR FAQ SECTION
 const faqItems = document.querySelectorAll(".faq-item");

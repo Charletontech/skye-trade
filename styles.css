@@ -71,6 +71,40 @@ html {
   color: #00ff99;
 }
 
+/* /////// */
+.withdrawal-alert {
+  position: fixed;
+  top: 30px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  border-right: 3px solid var(--blue);
+  border-radius: 6px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  z-index: 9999;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.withdrawal-alert.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.withdrawal-alert .withdrawal-icon {
+  font-size: 20px;
+}
+
+.withdrawal-alert .withdrawal-alert-text strong {
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+
 /* HERO SECTION */
 .hero-section {
   position: relative;
