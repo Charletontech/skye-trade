@@ -1,0 +1,405 @@
+@import url("https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap");
+@import url("./translate-button.css");
+
+:root {
+  --primary: #1f1f2e;
+  --secondary: #2c2c3b;
+  --highlight: #18cb96;
+  --light: #f1f1f1;
+  --green: #00b894;
+  --border: #d1d1d1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "National Park", sans-serif;
+  background-color: var(--primary);
+  color: white;
+}
+
+.sidebar2 {
+  position: fixed;
+  top: 0;
+  left: -350px; /* Initially hidden off-screen */
+  width: 350px;
+  height: 100%;
+  background-color: var(--secondary);
+  color: var(--light);
+  z-index: 10000;
+  transition: left 0.3s ease-in-out;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  padding-bottom: 20px; /* Ensure all content is visible when scrolled */
+}
+
+.sidebar2 p {
+  margin-left: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 0 0 15px;
+  width: auto;
+}
+
+.sidebar2 button {
+  margin-left: 1rem;
+  padding: 10px 12px;
+  border: none;
+  background-color: var(--green);
+  color: white;
+  border-radius: 8px;
+}
+
+.sidebar2.open {
+  left: 0;
+}
+
+.sidebar2 input {
+  background-color: transparent;
+  border: none;
+  color: var(--light);
+  outline: none;
+  padding: 5px;
+}
+
+.sidebar-header {
+  position: relative;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.sidebar-header .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sidebar-header .background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-header .profile-picture {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--green);
+  background-color: var(--secondary); /* Ensure no transparency issues */
+}
+
+.sidebar-header .profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-info,
+.account-info {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.user-info h2,
+.account-info h2 {
+  color: var(--green);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-info p,
+.account-info p {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .sidebar2 {
+    left: -350px;
+    width: 350px;
+  }
+}
+
+/* header */
+.logo img {
+  width: 10rem;
+  height: 3rem;
+  margin: 10px auto 18px;
+  display: block;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--secondary);
+  padding: 15px;
+  width: 100%;
+}
+
+header .user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+}
+
+header span {
+  display: none;
+}
+
+header button {
+  background: var(--highlight);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+/* profile picture */
+.dp {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.dp:hover {
+  cursor: pointer;
+}
+
+/* modal pop up */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.85);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #1e293b;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  color: #f1f5f9;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #f87171;
+}
+
+.qr-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.qr-code {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+.wallet-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #334155;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+#walletAddress {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+#copyWalletBtn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+}
+
+#depositForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#depositForm input[type="file"],
+#depositForm input[type="number"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #64748b;
+  background-color: #0f172a;
+  color: white;
+}
+
+#depositForm button[type="submit"] {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.note {
+  font-size: 13px;
+  color: #facc15;
+  margin-top: 10px;
+}
+
+.notification {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #22c55e;
+  font-weight: bold;
+}
+
+/* deposit boxes */
+.deposit-method {
+  margin-bottom: 30px;
+}
+
+.deposit-method h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #f1f5f9;
+}
+
+.deposit-method p.warning {
+  color: #facc15; /* yellow warning */
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.deposit-method p.details {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.deposit-method button {
+  margin-top: 10px;
+  background-color: #2563eb; /* blue button */
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.deposit-method button:hover {
+  background-color: #1d4ed8;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.box {
+  background-color: var(--secondary);
+  color: white;
+  padding: 2rem;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* Desktop layout */
+
+@media (max-width: 850px) {
+  header .user-info span {
+    visibility: hidden;
+  }
+
+  header .user-info strong {
+    visibility: visible;
+  }
+
+  .user-info {
+    width: auto;
+  }
+
+  .modal {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .modal h2 {
+    font-size: 18px;
+  }
+
+  .deposit-method h3 {
+    font-size: 14px;
+  }
+
+  .deposit-method p.details {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 850px) {
+  .logo {
+    /* display: none; */
+  }
+  .logo img {
+    width: 10rem;
+    height: 3.5rem;
+    margin: 8px auto 15px;
+    display: block;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  header .user-info {
+    display: flex;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+  }
+}

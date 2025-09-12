@@ -4,6 +4,7 @@ import kycTable from "./kycTable.js";
 import withdrawalTable from "./withdrawalTable.js";
 import taxCodesTable from "./taxCodes.js";
 import composeMail from "./composeMail.js";
+import depositTable from "./depositTable.js";
 window.addEventListener("DOMContentLoaded", async () => {
   // execute users table logic && also get user data
   const userData = await usersTableLogic();
@@ -17,4 +18,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   taxCodesTable();
   // execute logic for composeMail
   composeMail();
+  // execute logic for deposit table
+  depositTable();
 });

@@ -279,7 +279,6 @@ async function handleFetchKycStatus() {
 }
 
 const kycStatus = await handleFetchKycStatus();
-console.log(kycStatus);
 switch (kycStatus) {
   case "approved":
     kycContent = `
@@ -430,13 +429,13 @@ function handleFileChange(event, previewId) {
 }
 
 // Deposit methods modal
-document.getElementById("depositBtn").addEventListener("click", toggleModal);
-document
-  .getElementById("closeDepositModal")
-  .addEventListener("click", toggleModal);
-function toggleModal() {
-  document.getElementById("depositModal").classList.toggle("hidden");
-}
+// document.getElementById("depositBtn").addEventListener("click", toggleModal);
+// document
+//   .getElementById("closeDepositModal")
+//   .addEventListener("click", toggleModal);
+// function toggleModal() {
+//   document.getElementById("depositModal").classList.toggle("hidden");
+// }
 
 // Copy wallet address on click
 document.addEventListener("click", function (e) {
@@ -672,10 +671,10 @@ async function fetchWithdrawalHistory() {
 // HANDLE MENU CHANGE
 const hamburger = document.getElementById("hamburger");
 const sidebar = document.getElementById("sidebar");
+const sidebarLinks = document.querySelectorAll(".sidebar li");
 const overlay = document.getElementById("overlay");
 const mainContentHeader = document.querySelector(".right-panel h2");
 const chartContainer = document.querySelector(".chart-container");
-const sidebarLinks = document.querySelectorAll(".sidebar li");
 const menuContentMap = {
   home: {
     title: "Home",

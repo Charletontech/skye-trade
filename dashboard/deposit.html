@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deposit Modal</title>
+    <link rel="stylesheet" href="../css/swal-toast.css" />
+    <link rel="stylesheet" href="../css/deposit-page.css" />
+    <link rel="shortcut icon" href="../assets/arrow.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- translator -->
+    <div class="langBox-down">
+      <!-- Hidden Google Translate container -->
+      <div id="google_translate_element" style="display: none"></div>
+      <div id="google_translate_element2" style="display: none"></div>
+
+      <!-- Translate button with dropdown -->
+      <div class="translate-dropdown dropdown-content-up">
+        <button class="translate-btn">
+          <img class="defaultFlag" src="https://flagcdn.com/w40/gb.png" />
+        </button>
+        <div id="language-menu" class="dropdown-content dropdown-content-up">
+          <div data-code="en|en" data-flag="gb" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/gb.png" alt="English" />
+            English
+          </div>
+          <div data-code="en|fr" data-flag="fr" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/fr.png" alt="French" /> French
+          </div>
+          <div data-code="en|es" data-flag="es" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/es.png" alt="Spanish" />
+            Spanish
+          </div>
+          <div data-code="en|de" data-flag="de" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/de.png" alt="German" /> German
+          </div>
+          <div data-code="en|zh-CN" data-flag="cn" class="language-menu-item">
+            <img src="https://flagcdn.com/w40/cn.png" alt="Chinese" />
+            Chinese
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile sidebar -->
+    <div class="sidebar2" id="user-sidebar">
+      <div class="sidebar-header">
+        <div class="background-image">
+          <img src="../assets/bg-2.jpg" alt="Background Image" />
+        </div>
+        <div class="profile-picture">
+          <img src="../assets/avatar.jpg" alt="Profile Picture" />
+        </div>
+      </div>
+      <form id="edit-user-data-form" class="user-info">
+        <h2><span class="material-icons">person</span> User Info</h2>
+        <p>
+          <span class="material-icons">account_circle</span> Fullname:
+          <input
+            type="text"
+            id="profileFullName"
+            name="fullName"
+            value="John Doe"
+          />
+        </p>
+        <p>
+          <span class="material-icons">email</span> Email:
+          <input
+            type="text"
+            id="profileEmail"
+            name="email"
+            value=" cryptopay.helpcentre@gmail.com"
+          />
+        </p>
+        <p>
+          <span class="material-icons">phone</span> Phone:
+          <input
+            id="profilePhone"
+            type="text"
+            name="phone"
+            value="09021848029"
+          />
+        </p>
+        <p style="border-bottom: none">
+          <span class="material-icons">flag</span> Nationality:
+          <input
+            id="profileCOR"
+            type="text"
+            name="countryOfResidence"
+            value="Paraguay"
+          />
+        </p>
+      </form>
+      <div class="account-info">
+        <h2>
+          <span class="material-icons">account_balance</span> Account Info
+        </h2>
+        <p>
+          <span class="material-icons">wallet</span> Available Balance: $<span
+            id="profileBalance"
+            >0</span
+          >
+        </p>
+        <p>
+          <span class="material-icons">settings</span> Account Status: Active
+        </p>
+        <p>
+          <span class="material-icons">account_box</span> Account Type: Live
+          Trading Account
+        </p>
+        <p>
+          <span class="material-icons">trending_up</span> Account Level: Starter
+        </p>
+      </div>
+    </div>
+    <!-- Main content -->
+    <div class="logo">
+      <img src="../assets/logo-white.png" alt="logo" />
+    </div>
+    <header id="header">
+      <div class="hamburger" id="hamburger" onclick="window.history.back()">
+        <i class="material-icons">arrow_back</i>
+      </div>
+      <button>Funds Deposit</button>
+      <div class="user-info">
+        <p><span>Welcome, </span><strong></strong></p>
+        <img class="dp" src="../assets/avatar.jpg" alt="profile picture" />
+      </div>
+    </header>
+    <div class="grid-container">
+      <div class="box box1">
+        <div class="deposit-method">
+          <h3>Bitcoin Deposit Method</h3>
+          <p class="warning">
+            Please make sure you upload your payment proof for quick payment
+            verification
+          </p>
+          <p class="details">
+            On confirmation, our system will automatically convert your Bitcoin
+            to live value of Dollars. Ensure that you deposited the actual
+            Bitcoin to the address specified on the payment Page.
+          </p>
+          <button
+            class="deposit-btn"
+            data-wallet="bc1q43q0d04x2kqxufuzmk5k0rznu9jxwfdhaffvgc"
+            data-header="Bitcoin Deposit"
+          >
+            Make Deposit
+          </button>
+        </div>
+      </div>
+      <div class="box box2">
+        <div class="deposit-method">
+          <h3>Ethereum Deposit Method</h3>
+          <p class="warning">
+            Please make sure you upload your payment proof for quick payment
+            verification
+          </p>
+          <p class="details">
+            On confirmation, our system will automatically convert your Bitcoin
+            to live value of Dollars. Ensure that you deposited the actual
+            Bitcoin to the address specified on the payment Page.
+          </p>
+          <button
+            class="deposit-btn"
+            data-wallet="0x985260c04C7BD739FD29762d7cd06C7BE5397B2f"
+            data-header="Ethereum Deposit"
+          >
+            Make Deposit
+          </button>
+        </div>
+      </div>
+      <div class="box box3">
+        <div class="deposit-method">
+          <h3>USDT (TRC20) Deposit Method</h3>
+          <p class="warning">
+            Please make sure you upload your payment proof for quick payment
+            verification
+          </p>
+          <p class="details">
+            On confirmation, our system will automatically convert your Bitcoin
+            to live value of Dollars. Ensure that you deposited the actual
+            Bitcoin to the address specified on the payment Page.
+          </p>
+          <button
+            class="deposit-btn"
+            data-wallet="TF696MtqvrCXrER5hHA7vixQo8qF5zJkgV"
+            data-header="USDT (TRC20) Deposit"
+          >
+            Make Deposit
+          </button>
+        </div>
+      </div>
+      <div class="box box4">
+        <div class="deposit-method">
+          <h3>USDT (ERC20) Deposit Method</h3>
+          <p class="warning">
+            Please make sure you upload your payment proof for quick payment
+            verification
+          </p>
+          <p class="details">
+            On confirmation, our system will automatically convert your Bitcoin
+            to live value of Dollars. Ensure that you deposited the actual
+            Bitcoin to the address specified on the payment Page.
+          </p>
+          <button
+            class="deposit-btn"
+            data-wallet="0x985260c04C7BD739FD29762d7cd06C7BE5397B2f"
+            data-header="USDT (ERC20) Deposit"
+          >
+            Make Deposit
+          </button>
+        </div>
+      </div>
+      <div class="box box5">
+        <div class="deposit-method">
+          <h3>Litecoin Deposit Method</h3>
+          <p class="warning">
+            Please make sure you upload your payment proof for quick payment
+            verification
+          </p>
+          <p class="details">
+            On confirmation, our system will automatically convert your Bitcoin
+            to live value of Dollars. Ensure that you deposited the actual
+            Bitcoin to the address specified on the payment Page.
+          </p>
+          <button
+            class="deposit-btn"
+            data-wallet="ltc1q6tlhv5agr57zz9dlfdyvffe7ldlj6deuwth5pg"
+            data-header="LiteCoin Deposit"
+          >
+            Make Deposit
+          </button>
+        </div>
+      </div>
+      <div class="box box6">
+        <div class="deposit-method">
+          <h3>Bitcoin Deposit Method</h3>
+          <p class="warning">
+            Please make sure you upload your payment proof for quick payment
+            verification
+          </p>
+          <p class="details">
+            On confirmation, our system will automatically convert your Bitcoin
+            to live value of Dollars. Ensure that you deposited the actual
+            Bitcoin to the address specified on the payment Page.
+          </p>
+          <button
+            class="deposit-btn"
+            data-wallet="bc1q43q0d04x2kqxufuzmk5k0rznu9jxwfdhaffvgc"
+            data-header="Bitcoin Deposit"
+          >
+            Make Deposit
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- pop up -->
+    <!-- Deposit Modal -->
+    <div id="depositModal" class="modal-overlay">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Bitcoin Deposit</h2>
+        <div class="qr-section">
+          <!-- <img
+            src="../assets/bitcoin-qr.png"
+            alt="Bitcoin QR Code"
+            class="qr-code"
+          /> -->
+          <div id="qrcode" class="qr-code"></div>
+
+          <p style="text-align: left">Scan QR Code to copy wallet address</p>
+          <div class="wallet-container">
+            <span id="walletAddressDisplay"></span>
+
+            <button id="copyWalletBtn">Copy Wallet</button>
+          </div>
+        </div>
+        <form id="depositForm">
+          <label for="proofUpload">Upload Payment Proof:</label>
+          <input type="file" id="proofUpload" name="proofUpload" />
+          <label for="amount">Amount ($):</label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            placeholder="Enter amount"
+          />
+          <button type="submit" class="submitBtn">Submit</button>
+        </form>
+        <p class="note">
+          Please make sure you upload your payment proof for quick payment
+          verification.
+        </p>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="../scripts/deposit.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../scripts/smartsuppLivechat.js"></script>
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"
+    ></script>
+    <script src="../scripts/googleTranslate.js"></script>
+  </body>
+</html>
